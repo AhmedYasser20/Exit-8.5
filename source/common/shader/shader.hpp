@@ -74,6 +74,9 @@ namespace our {
         }
 
         //TODO: (Req 1) Delete the copy constructor and assignment operator.
+        ShaderProgram(const ShaderProgram&) = delete;
+        ShaderProgram &operator=(ShaderProgram const &) = delete;
+
         //Question: Why do we delete the copy constructor and assignment operator?
     };
 
