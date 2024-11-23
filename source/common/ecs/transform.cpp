@@ -14,7 +14,6 @@ namespace our {
         glm::mat4 scaleMatrix = glm::scale(glm::mat4(1.0f), scale);
         glm::mat4 rotateMatrix = glm::yawPitchRoll(rotation[1], rotation[0], rotation[2]);
         glm::mat4 transformMatrix = translationMatrix * rotateMatrix * scaleMatrix;
-        //glm::vec4 lRow = glm::vec4(0, 0, 0, 1);
         return transformMatrix; 
     }
 
