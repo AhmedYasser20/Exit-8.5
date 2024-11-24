@@ -47,40 +47,55 @@ namespace our
         void setup() const
         {
             // TODO: (Req 4) Write this function
-            if (faceCulling.enabled)
+
+            glColorMask(colorMask.x, colorMask.y, colorMask.z, colorMask.w); // enable/disable writing of frame buffer color components
+            glDepthMask(depthMask);                                          // enable/disable writing to the depth buffer
+
+            // For example, if faceCulling.enabled is true, you should call glEnable(GL_CULL_FACE), otherwise, you should call glDisable(GL_CULL_FACE)
+            if (faceCulling.enabled) // check if face culling is enabled
             {
-                glEnable(GL_CULL_FACE);
-                glCullFace(faceCulling.culledFace);
-                glFrontFace(faceCulling.frontFace);
+                glEnable(GL_CULL_FACE);             // all the faces that are not front faces are discarded when enabling the culled face
+                glCullFace(faceCulling.culledFace); // specify that we want to culled the back faces
+                glFrontFace(faceCulling.frontFace); // determine rather we want clockwise faces or counter clockwise faces to not be culled
             }
             else
             {
                 glDisable(GL_CULL_FACE);
             }
 
-            if (depthTesting.enabled)
+            // The depth buffer is a buffer that stores the depth of each fragment
+            // The depth testing is a technique used to determine whether a fragment is visible or not
+            if (depthTesting.enabled) // check if depth testing is enabled
             {
-                glEnable(GL_DEPTH_TEST);
-                glDepthFunc(depthTesting.function);
+                // When depth testing is enabled, the depth of the fragment is compared with the depth value stored in the depth buffer
+                // If the depth of the fragment is less than the stored depth value, the fragment is visible
+                // If the depth of the fragment is greater than the stored depth value, the fragment is not visible
+                glEnable(GL_DEPTH_TEST); // enable depth testing
+                // OpenGL provides a set of comparison functions that can be used to determine whether a fragment is visible or not
+                // This allows us to specify how the depth of the fragment should be compared with the depth value stored in the depth buffer
+                glDepthFunc(depthTesting.function); // specify the depth comparison function
             }
             else
             {
-                glDisable(GL_DEPTH_TEST);
+                glDisable(GL_DEPTH_TEST); // disable depth testing
             }
 
-            if (blending.enabled)
+            // Blending is a technique used to combine the color of a fragment with the color of the fragment that is already in the frame buffer
+            // This is useful for rendering transparent objects
+            if (blending.enabled) // check if blending is enabled
             {
-                glEnable(GL_BLEND);
-                glBlendEquation(blending.equation);
-                glBlendFunc(blending.sourceFactor, blending.destinationFactor);
-                glBlendColor(blending.constantColor.r, blending.constantColor.g, blending.constantColor.b, blending.constantColor.a);
+                glEnable(GL_BLEND); // enable blending
+                // The blending equation is used to determine how the colors of the source and destination fragments should be combined before being using them in the blending function
+                glBlendEquation(blending.equation); // specify the blending equation
+                // The blending function is used to determine how the colors of the source and destination fragments should be combined
+                glBlendFunc(blending.sourceFactor, blending.destinationFactor); // specify the blending function
+                // The constant color is used to specify a constant color that should be used when blending
+                glBlendColor(blending.constantColor.r, blending.constantColor.g, blending.constantColor.b, blending.constantColor.a); // specify the constant color
             }
             else
             {
-                glDisable(GL_BLEND);
+                glDisable(GL_BLEND); // disable blending
             }
-            glDepthMask(depthMask);
-            glColorMask(colorMask.r, colorMask.g, colorMask.b, colorMask.a);
         }
 
         // Given a json object, this function deserializes a PipelineState structure
