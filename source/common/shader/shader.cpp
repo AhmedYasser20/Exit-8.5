@@ -5,58 +5,79 @@
 #include <fstream>
 #include <string>
 
-//Forward definition for error checking functions
+// Forward definition for error checking functions
 std::string checkForShaderCompilationErrors(GLuint shader);
 std::string checkForLinkingErrors(GLuint program);
 
-bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const {
+bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const
+{
     // Here, we open the file and read a string from it containing the GLSL code of our shader
     std::ifstream file(filename);
-    if(!file){
+    if (!file)
+    {
         std::cerr << "ERROR: Couldn't open shader file: " << filename << std::endl;
         return false;
     }
     std::string sourceString = std::string(std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>());
-    const char* sourceCStr = sourceString.c_str();
+    const char *sourceCStr = sourceString.c_str();
     file.close();
 
-    //TODO: Complete this function
-    //Note: The function "checkForShaderCompilationErrors" checks if there is
-    // an error in the given shader. You should use it to check if there is a
-    // compilation error and print it so that you can know what is wrong with
-    // the shader. The returned string will be empty if there is no errors.
+    // TODO: Complete this function
+    // Note: The function "checkForShaderCompilationErrors" checks if there is
+    //  an error in the given shader. You should use it to check if there is a
+    //  compilation error and print it so that you can know what is wrong with
+    //  the shader. The returned string will be empty if there is no errors.
+
+    // reates a new shader object and returns its ID. This shader object can
+    // then be used to compile shader source code of a specific type (e.g., vertex shader, fragment shader).
     GLuint shader = glCreateShader(type);
+
+    // is used to set the source code for a shader object. This function specifies the source code that will be compiled for the shader.
+    // papameters:
+    //  shader: The ID of the shader object whose source code is to be replaced.
+    //  count: The number of strings in the string array.
+    //  string: An array of pointers to strings containing the source code.
+    //  length: An array of lengths of the strings, or NULL if the strings are null-terminated.
 
     glShaderSource(shader, 1, &sourceCStr, nullptr);
 
+    // is used to compile a shader object. This function compiles the source code strings that have been stored in the shader object specified by shader.
     glCompileShader(shader);
 
     std::string error = checkForShaderCompilationErrors(shader);
-    if (!error.empty()) {
+    if (!error.empty())
+    {
         std::cerr << "ERROR: Couldn't compile shader: " << filename << std::endl;
         std::cerr << error << std::endl;
         glDeleteShader(shader);
         return false;
     }
+
+    // is used to attach a shader object to a program object.
+    // This indicates that shader will be included in link operations that will be performed on program.
     glAttachShader(program, shader);
+
     glDeleteShader(shader);
-    
-    //We return true if the compilation succeeded
+
+    // We return true if the compilation succeeded
     return true;
 }
 
+bool our::ShaderProgram::link() const
+{
+    // TODO: Complete this function
+    // Note: The function "checkForLinkingErrors" checks if there is
+    //  an error in the given program. You should use it to check if there is a
+    //  linking error and print it so that you can know what is wrong with the
+    //  program. The returned string will be empty if there is no errors.
 
-
-bool our::ShaderProgram::link() const {
-    //TODO: Complete this function
-    //Note: The function "checkForLinkingErrors" checks if there is
-    // an error in the given program. You should use it to check if there is a
-    // linking error and print it so that you can know what is wrong with the
-    // program. The returned string will be empty if there is no errors.
-    
+    // Linking creates an executable that can be used by the GPU to render graphics.
+    // program: The ID of the program object to be linked. contains the vertex and fragment shaders.
     glLinkProgram(program);
+
     std::string error = checkForLinkingErrors(program);
-    if (!error.empty()) {
+    if (!error.empty())
+    {
         std::cerr << "ERROR: Couldn't link shader program" << std::endl;
         std::cerr << error << std::endl;
         return false;
@@ -68,11 +89,13 @@ bool our::ShaderProgram::link() const {
 // Function to check for compilation and linking error in shaders //
 ////////////////////////////////////////////////////////////////////
 
-std::string checkForShaderCompilationErrors(GLuint shader){
-     //Check and return any error in the compilation process
+std::string checkForShaderCompilationErrors(GLuint shader)
+{
+    // Check and return any error in the compilation process
     GLint status;
     glGetShaderiv(shader, GL_COMPILE_STATUS, &status);
-    if (!status) {
+    if (!status)
+    {
         GLint length;
         glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
         char *logStr = new char[length];
@@ -84,11 +107,13 @@ std::string checkForShaderCompilationErrors(GLuint shader){
     return std::string();
 }
 
-std::string checkForLinkingErrors(GLuint program){
-     //Check and return any error in the linking process
+std::string checkForLinkingErrors(GLuint program)
+{
+    // Check and return any error in the linking process
     GLint status;
     glGetProgramiv(program, GL_LINK_STATUS, &status);
-    if (!status) {
+    if (!status)
+    {
         GLint length;
         glGetProgramiv(program, GL_INFO_LOG_LENGTH, &length);
         char *logStr = new char[length];

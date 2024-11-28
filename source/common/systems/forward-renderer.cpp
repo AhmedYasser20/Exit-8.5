@@ -166,20 +166,54 @@ namespace our
 
         // TODO: (Req 9) Modify the following line such that "cameraForward" contains a vector pointing the camera forward direction
         //  HINT: See how you wrote the CameraComponent::getViewMatrix, it should help you solve this one
-        glm::vec3 cameraForward = glm::vec3(0.0, 0.0, -1.0f);
+        //  done  de ya abo heggi
+        glm::mat4 viewMatrix = camera->getViewMatrix();
+        glm::vec3 cameraForward = viewMatrix[2];
+
         std::sort(transparentCommands.begin(), transparentCommands.end(), [cameraForward](const RenderCommand &first, const RenderCommand &second)
                   {
-            //TODO: (Req 9) Finish this function
-            // HINT: the following return should return true "first" should be drawn before "second". 
-            return false; });
+                      // TODO: (Req 9) Finish this function
+                      //  HINT: the following return should return true "first" should be drawn before "second".
+                      //  we calculate dot product of the center point along camera forward direction
+                      float firstDistance = first.center.x * cameraForward.x + first.center.y * cameraForward.y + first.center.z * cameraForward.z;
+                      float secondDistance = second.center.x * cameraForward.x + second.center.y * cameraForward.y + second.center.z * cameraForward.z;
+                      // then we compare the 2 distance and put the further first (the logical operator here is >, but probably the cameraForward is inverted)
+                      return firstDistance < secondDistance; });
 
         // TODO: (Req 9) Get the camera ViewProjection matrix and store it in VP
+        // vp = camera->getProjectionMatrix(this->windowSize) * camera->getViewMatrix();
 
+        glm::mat4 VP = camera->getProjectionMatrix(this->windowSize) * camera->getViewMatrix();
         // TODO: (Req 9) Set the OpenGL viewport using viewportStart and viewportSize
 
+        // Parameters
+        //     x, y
+        //     Specify the lower left corner of the viewport rectangle, in pixels. The initial value is (0,0).
+
+        //     width, height
+        //     Specify the width and height of the viewport. When a GL context is first attached to a window, width and height are set to the dimensions of that window.
+
+        //     Description
+        //     glViewport specifies the affine transformation of x
+        //     and y
+        //     from normalized device coordinates to window coordinates. Let (xnd,ynd)
+        //     be normalized device coordinates.
+
+        glViewport(0, 0, this->windowSize.x, this->windowSize.y);
         // TODO: (Req 9) Set the clear color to black and the clear depth to 1
 
+        // clear color and depth values
+        glClearColor(0.0, 0.0, 0.0, 1.0);
+        glClearDepth(1.0);
+
         // TODO: (Req 9) Set the color mask to true and the depth mask to true (to ensure the glClear will affect the framebuffer)
+        // enables/disables writing on the depth buffer (enabled here)
+        // controls whether writing to the depth buffer is enabled or disabled. The depth buffer is used to keep track of the depth of
+        // each pixel on the screen to handle occlusion
+        glDepthMask(GL_TRUE);
+        // enable/disable writing colors in the frame buffer (enabled here)
+        // This function allows you to selectively enable or disable writing of color components to the framebuffer.
+        glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
 
         // If there is a postprocess material, bind the framebuffer
         if (postprocessMaterial)
@@ -189,33 +223,65 @@ namespace our
         }
 
         // TODO: (Req 9) Clear the color and depth buffers
+        // Enabling the depth test before clearing the color and depth buffers ensures that the depth buffer is properly managed during the rendering process
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // TODO: (Req 9) Draw all the opaque commands
         //  Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
-
+        for (RenderCommand opaqueCommand : this->opaqueCommands)
+        {
+            // set the "transform" uniform to be equal the model-view-projection matrix for each render command
+            glm::mat4 transform = VP * opaqueCommand.localToWorld;
+            opaqueCommand.material->setup();
+            opaqueCommand.material->shader->set("transform", transform);
+            opaqueCommand.mesh->draw();
+        }
+        glEnable(GL_DEPTH_TEST);
         // If there is a sky material, draw the sky
         if (this->skyMaterial)
         {
             // TODO: (Req 10) setup the sky material
 
+            this->skyMaterial->setup();
+
             // TODO: (Req 10) Get the camera position
+
+            glm::vec3 cameraPosition = glm::vec3(camera->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1));
 
             // TODO: (Req 10) Create a model matrix for the sy such that it always follows the camera (sky sphere center = camera position)
 
+            // translate the identity matrix by cameraPosition whatever it goes and apply this to the sky sphere center
+            glm::mat4 skySphereModel = glm::translate(glm::mat4(1.0), cameraPosition);
+
             // TODO: (Req 10) We want the sky to be drawn behind everything (in NDC space, z=1)
             //  We can acheive the is by multiplying by an extra matrix after the projection but what values should we put in it?
+            // glm::mat4 alwaysBehindTransform = glm::mat4(
+            //     1.0f, 0.0f, 0.0f, 0.0f,
+            //     0.0f, 1.0f, 0.0f, 0.0f,
+            //     0.0f, 0.0f, 1.0f, 0.0f,
+            //     0.0f, 0.0f, 0.0f, 1.0f);
             glm::mat4 alwaysBehindTransform = glm::mat4(
                 1.0f, 0.0f, 0.0f, 0.0f,
                 0.0f, 1.0f, 0.0f, 0.0f,
-                0.0f, 0.0f, 1.0f, 0.0f,
-                0.0f, 0.0f, 0.0f, 1.0f);
+                0.0f, 0.0f, 0.0f, 0.0f,
+                0.0f, 0.0f, 1.0f, 1.0f);
             // TODO: (Req 10) set the "transform" uniform
 
+            this->skyMaterial->shader->set("transform", alwaysBehindTransform * VP * skySphereModel);
             // TODO: (Req 10) draw the sky sphere
+            this->skySphere->draw();
         }
         // TODO: (Req 9) Draw all the transparent commands
         //  Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
-
+        for (RenderCommand transparentCommand : this->transparentCommands)
+        {
+            // set the "transform" uniform to be equal the model-view-projection matrix for each render command
+            glm::mat4 transform = VP * transparentCommand.localToWorld;
+            transparentCommand.material->setup();
+            transparentCommand.material->shader->set("transform", transform);
+            transparentCommand.mesh->draw();
+        }
         // If there is a postprocess material, apply postprocessing
         if (postprocessMaterial)
         {
