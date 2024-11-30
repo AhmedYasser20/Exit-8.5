@@ -168,8 +168,11 @@ namespace our
         //  HINT: See how you wrote the CameraComponent::getViewMatrix, it should help you solve this one
         //  done  de ya abo heggi
         // 7bebe ya moo <3
-        glm::mat4 viewMatrix = camera->getViewMatrix();
-        glm::vec3 cameraForward = viewMatrix[2];
+        auto owner = camera->getOwner();
+        auto M = owner->getLocalToWorldMatrix();
+        glm::vec3 eye = glm::vec3(M * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+        glm::vec3 center = glm::vec3(M * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f));
+        glm::vec3 cameraForward = glm::normalize(center - eye);
 
         std::sort(transparentCommands.begin(), transparentCommands.end(), [cameraForward](const RenderCommand &first, const RenderCommand &second)
                   {
@@ -179,7 +182,7 @@ namespace our
                       float firstDistance = first.center.x * cameraForward.x + first.center.y * cameraForward.y + first.center.z * cameraForward.z;
                       float secondDistance = second.center.x * cameraForward.x + second.center.y * cameraForward.y + second.center.z * cameraForward.z;
                       // then we compare the 2 distance and put the further first (the logical operator here is >, but probably the cameraForward is inverted)
-                      return firstDistance < secondDistance; });
+                      return firstDistance > secondDistance; });
 
         // TODO: (Req 9) Get the camera ViewProjection matrix and store it in VP
         // vp = camera->getProjectionMatrix(this->windowSize) * camera->getViewMatrix();
@@ -238,7 +241,7 @@ namespace our
             opaqueCommand.material->shader->set("transform", transform);
             opaqueCommand.mesh->draw();
         }
-        glEnable(GL_DEPTH_TEST);
+        // glEnable(GL_DEPTH_TEST);
         // If there is a sky material, draw the sky
         if (this->skyMaterial)
         {

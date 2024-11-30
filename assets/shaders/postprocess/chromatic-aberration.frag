@@ -1,4 +1,4 @@
-#version 330
+#version 330 core
 
 // The texture holding the scene pixels
 uniform sampler2D tex;
