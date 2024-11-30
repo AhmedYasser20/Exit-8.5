@@ -101,10 +101,17 @@ namespace our
         ShaderProgram &operator=(ShaderProgram const &) = delete;
 
         // Question: Why do we delete the copy constructor and assignment operator?
+        
         //  deleting the copy constructor and assignment operator for a class is a way to prevent copying of objects of that class.
         //  This is often done for classes that manage resources that cannot be easily or safely copied
         //, such as file handles, network connections, or OpenGL shader programs.
         //  example : our::ShaderProgram::link()
+        ////////////////////////////////////////////////////// 
+        // In addition, 
+        // this class utilize RAII (Resource Acquisition Is Initialization) pattern.
+        // so when taking a copy from object it will copy the resource handle 
+        // and when the copy is destroyed it will delete the resource handle which will cause
+        // the original object to have a dangling pointer to the resource handle. 
     };
 
 }

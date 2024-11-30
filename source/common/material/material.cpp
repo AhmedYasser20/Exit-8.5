@@ -8,6 +8,12 @@ namespace our {
     // This function should setup the pipeline state and set the shader to be used
     void Material::setup() const {
         //TODO: (Req 7) Write this function
+        this->pipelineState.setup();
+        if(shader) {  // Check if shader exists
+            shader->use();  // Now we can safely use it
+        } else {
+            throw std::runtime_error("Attempting to setup material with no shader");
+        }
     }
 
     // This function read the material data from a json object
@@ -25,6 +31,8 @@ namespace our {
     // set the "tint" uniform to the value in the member variable tint 
     void TintedMaterial::setup() const {
         //TODO: (Req 7) Write this function
+        Material::setup(); 
+        shader->set("tint",tint);
     }
 
     // This function read the material data from a json object
@@ -38,7 +46,23 @@ namespace our {
     // set the "alphaThreshold" uniform to the value in the member variable alphaThreshold
     // Then it should bind the texture and sampler to a texture unit and send the unit number to the uniform variable "tex" 
     void TexturedMaterial::setup() const {
-        //TODO: (Req 7) Write this function
+        TintedMaterial::setup();
+        if(!shader || !texture){
+            throw std::runtime_error("Attempting to setup textured material with missing components");
+            return ;
+        }
+        // Sets a uniform variable named "alphaThreshold" in the shader to the value of the member variable `alphaThreshold`. This is typically used for transparency or alpha testing in shaders.
+        shader->set("alphaThreshold", alphaThreshold);    
+        // Activates the texture unit 0. This is necessary before binding a texture to a texture unit.
+        texture->ActivateTexture0();    
+        // Binds the texture to the currently active texture unit (which is texture unit 0 in this case). This makes the texture available for use in the shader.
+        texture->bind();
+
+        // Binds the sampler to texture unit 0. A sampler is used to control how the texture is sampled (e.g., filtering, wrapping).
+        if(sampler) // not always a sampler is provided
+            sampler->bind(0);
+        // Sets a uniform variable named "tex" in the shader to the value 0. This tells the shader to use the texture bound to texture unit 0.
+        shader->set("tex", 0);
     }
 
     // This function read the material data from a json object

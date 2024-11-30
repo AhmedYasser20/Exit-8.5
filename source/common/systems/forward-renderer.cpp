@@ -167,6 +167,7 @@ namespace our
         // TODO: (Req 9) Modify the following line such that "cameraForward" contains a vector pointing the camera forward direction
         //  HINT: See how you wrote the CameraComponent::getViewMatrix, it should help you solve this one
         //  done  de ya abo heggi
+        // 7bebe ya moo <3
         glm::mat4 viewMatrix = camera->getViewMatrix();
         glm::vec3 cameraForward = viewMatrix[2];
 
@@ -289,11 +290,11 @@ namespace our
             glBindFramebuffer(GL_FRAMEBUFFER, 0);
             // TODO: (Req 11) Setup the postprocess material and draw the fullscreen triangle
 
-            postprocessMaterial->setup();
 
             // Draw the fullscreen triangle
             // We don't need to bind a vertex buffer since we are using the vertex array
             glBindVertexArray(postProcessVertexArray);
+            postprocessMaterial->setup();
             glDrawArrays(GL_TRIANGLES, 0, 3);
             glBindVertexArray(0);
         }

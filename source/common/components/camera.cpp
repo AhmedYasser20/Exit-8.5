@@ -35,7 +35,19 @@ namespace our {
         // - the center position which is the point (0,0,-1) but after being transformed by M
         // - the up direction which is the vector (0,1,0) but after being transformed by M
         // then you can use glm::lookAt
-        return glm::mat4(1.0f);
+        // These points define our camera's coordinate system
+        glm::vec3 eye(0.0f,0.0f,0.0f);      // Camera position in camera space
+        glm::vec3 center(0.0f,0.0f,-1.0f);  // Point camera looks at in camera space
+        glm::vec3 up(0.0f,1.0f,0.0f);       // Camera's up direction in camera space
+    
+        // Transform these points to world space using M
+        glm::vec3 worldEye = M * glm::vec4(eye, 1.0f);
+        glm::vec3 worldCenter = M * glm::vec4(center, 1.0f);
+        glm::vec3 worldUp = M * glm::vec4(up, 0.0f);  // Using 0 for w since it's a direction
+    
+        // Create view matrix that transforms from world space to camera space
+        return glm::lookAt(worldEye, worldCenter, worldUp);
+        
     }
 
     // Creates and returns the camera projection matrix
@@ -46,6 +58,15 @@ namespace our {
         // It takes left, right, bottom, top. Bottom is -orthoHeight/2 and Top is orthoHeight/2.
         // Left and Right are the same but after being multiplied by the aspect ratio
         // For the perspective camera, you can use glm::perspective
-        return glm::mat4(1.0f);
+        float aspect = static_cast<float>(viewportSize.x) / viewportSize.y;
+        if(cameraType == CameraType::ORTHOGRAPHIC){
+            float top = orthoHeight / 2.0f;
+            float right = top * aspect;
+            return glm::ortho(-right, right, -top, top, near, far);
+        } else {
+            return glm::perspective(fovY, aspect, near, far);
+        }
+
+        // return glm::mat4(1.0f);
     }
 }

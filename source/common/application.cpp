@@ -29,7 +29,7 @@ std::string default_screenshot_filepath() {
     auto time = std::time(nullptr);
     
     struct tm localtime;
-    localtime_s(&localtime, &time);
+    localtime_r(&time, &localtime);
     stream << "screenshots/screenshot-" << std::put_time(&localtime, "%Y-%m-%d-%H-%M-%S") << ".png";
     return stream.str();
 }

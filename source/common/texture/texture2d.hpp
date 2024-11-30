@@ -32,7 +32,9 @@ namespace our {
             //TODO: (Req 5) Complete this function
             glBindTexture(GL_TEXTURE_2D, name); // bind the texture object with the name stored in the member variable "name" to the target GL_TEXTURE_2D
         }
-
+        static void ActivateTexture0(){ // activate texture unit 0
+            glActiveTexture(GL_TEXTURE0);
+        }
         // This static method ensures that no texture is bound to GL_TEXTURE_2D
         static void unbind(){
             //TODO: (Req 5) Complete this function

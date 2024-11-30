@@ -43,7 +43,7 @@ our::Texture2D *our::texture_utils::loadImage(const std::string &filename, bool 
     texture->bind();                                                                               // Bind the texture such that we upload the image data to its storage
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, size.x, size.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels); // specify a two-dimensional texture image
     glGenerateMipmap(GL_TEXTURE_2D);                                                               // generate a complete set of mipmaps for the texture object bound to the target GL_TEXTURE_2D
-
+    texture->unbind(); // to make sure we don't accidentally modify it
     stbi_image_free(pixels); // Free image data after uploading to GPU
     return texture;
 }
