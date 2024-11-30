@@ -23,16 +23,36 @@ namespace our
             // TODO: (Req 1) Create A shader program
             //   creates a new program object and returns its ID. A program object is used to link together multiple shader objects
             //    (such as vertex and fragment shaders) into a single, executable program that can be used by the GP
+           
+           // The program object created by glCreateProgram is an object to which shader objects can be attached. 
+           // This provides a way to specify the shader objects that will be linked to create a program. 
+           // It also provides a way for you to query the resulting program object to determine if it can execute.
+           // The program object is the final linked version of multiple shader objects combined.
+           // When you link a program object, it links all the shader objects attached to it.
             program = glCreateProgram();
         }
         ~ShaderProgram()
         {
             // TODO: (Req 1) Delete a shader program
+            //  deletes the program object specified by program.
+            //  This frees the memory and invalidates the name associated with the program object.
+            //  If a program object is in use as part of current rendering state, 
+            // it will be flagged for deletion, but it won't be deleted until it is no longer part of the current state.
+            //
+            //  After a program object has been deleted, it has no contents and its name is invalid.
+            //  If you call glDeleteProgram with a program that has already been deleted, the function has no effect.
+            //  If program is 0, the function has no effect.
+            
             glDeleteProgram(program);
         }
 
+        // The attach function attaches a shader to the program.
+        // This indicates that shader will be included in link operations that will be performed on program.
         bool attach(const std::string &filename, GLenum type) const;
 
+        // The link function links the program object specified by program.
+        // Linking creates an executable that can be used by the GPU to render graphics.
+        // The program object specified by program must be a program object that was created with glCreateProgram.
         bool link() const;
 
         void use()
@@ -47,6 +67,11 @@ namespace our
         GLuint getUniformLocation(const std::string &name)
         {
             // TODO: (Req 1) Return the location of the uniform with the given name
+
+            // glGetUniformLocation returns the location of a uniform variable in a shader program.
+            // program: The program object to be queried.
+            // name: The name of the uniform variable whose location is to be queried.
+            // If name starts with the reserved prefix "gl_", a location of -1 will be returned.
             return glGetUniformLocation(program, name.c_str());
         }
         // A uniform variable in a shader is a global variable declared in the shader code, used to pass data from your application to the shader. It is:
@@ -57,6 +82,10 @@ namespace our
         void set(const std::string &uniform, GLfloat value)
         {
             // TODO: (Req 1) Send the given float value to the given uniform
+            // glUniform1f sets the value of a uniform variable for the current program object.
+            // location: The location of the uniform variable to be modified.
+            //This means that the uniform variable's value is set for all vertices 
+            //and fragments processed by the shaders in the current rendering call.
             glUniform1f(getUniformLocation(uniform), value);
         }
 

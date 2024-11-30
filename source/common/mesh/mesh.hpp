@@ -33,15 +33,31 @@ namespace our
         {
             // TODO: (Req 2) Write this function
 
+            // Generate the VAO
+            // Bind the VAO
             glGenVertexArrays(1, &VAO);
             glBindVertexArray(VAO);
 
+            // Generate the VBO
+            // Bind the VBO
+            // Copy the vertices data to the VBO
+            // The VBO is used to store the vertex data
+            // The vertices data is copied to the VBO so that it can be used by the GPU during rendering
+            // The GL_STATIC_DRAW flag is used to tell OpenGL that the data will not be changed
+            // This allows OpenGL to optimize the data for faster rendering
             glGenBuffers(1, &VBO);
             glBindBuffer(GL_ARRAY_BUFFER, VBO);
             glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
 
             elementCount = static_cast<GLsizei>(elements.size());
 
+            // Generate the EBO
+            // Bind the EBO
+            // Copy the elements data to the EBO
+            // The EBO is used to store the indices of the vertices that will be used to draw the triangles
+            // The elements data is copied to the EBO so that it can be used by the GPU during rendering
+            // The GL_STATIC_DRAW flag is used to tell OpenGL that the data will not be changed
+            // This allows OpenGL to optimize the data for faster rendering
             glGenBuffers(1, &EBO);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, elementCount * sizeof(unsigned int), elements.data(), GL_STATIC_DRAW);
