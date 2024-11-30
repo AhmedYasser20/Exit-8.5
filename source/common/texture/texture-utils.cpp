@@ -10,7 +10,7 @@ our::Texture2D *our::texture_utils::empty(GLenum format, glm::ivec2 size)
     our::Texture2D *texture = new our::Texture2D();
     // TODO: (Req 11) Finish this function to create an empty texture with the given size and format
     texture->bind();                                                                              // bind the texture object with the name stored in the member variable "name" to the target GL_TEXTURE_2D
-    glTexImage2D(GL_TEXTURE_2D, 0, format, size.x, size.y, 0, format, GL_UNSIGNED_BYTE, nullptr); // specify a two-dimensional texture image
+    glTexStorage2D(GL_TEXTURE_2D, 1, format, size.x, size.y); // specify a two-dimensional texture image
     texture->unbind();
     return texture;
 }
