@@ -24,6 +24,17 @@ namespace our
 
             // TODO: (Req 10) Pick the correct pipeline state to draw the sky
             //  Hints: the sky will be draw after the opaque objects so we would need depth testing but which depth funtion should we pick?
+            // Opaque Objects Are Drawn First:
+
+            // These objects write their depth values to the depth buffer.
+            // Subsequent rendering must pass depth tests against these values.
+            // Sky Rendering:
+
+            // The sky is generally rendered as a background.
+            // You want it to overwrite fragments only where no opaque objects exist (or where it’s farther back than the nearest object).
+            //  Why Use GL_LEQUAL?
+            //  GL_LEQUAL allows fragments to pass if their depth value is less than or equal to the value in the depth buffer.
+
             //  We will draw the sphere from the inside, so what options should we pick for the face culling.
             PipelineState skyPipelineState{};
             skyPipelineState.depthTesting.enabled = true;
@@ -40,12 +51,20 @@ namespace our
 
             // Setup a sampler for the sky
             Sampler *skySampler = new Sampler();
+            // The Sampler class is likely a wrapper around OpenGL's texture sampling functionality,
+            // providing an interface to set various sampling parameters.
+
             skySampler->set(GL_TEXTURE_MIN_FILTER, GL_LINEAR);
             skySampler->set(GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            // see sildes tut week 7 slide 100
             skySampler->set(GL_TEXTURE_WRAP_S, GL_REPEAT);
+            // S Coordinate: Refers to the horizontal axis of the texture.
+            // T Coordinate: Refers to the vertical axis of the texture.
             skySampler->set(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
             // Combine all the aforementioned objects (except the mesh) into a material
+            // whether you need a mesh in a forward renderer depends on the type of objects or effects you're
+            // rendering. Simple or procedural cases can skip meshes, but complex, detailed 3D models require them
             this->skyMaterial = new TexturedMaterial();
             this->skyMaterial->shader = skyShader;
             this->skyMaterial->texture = skyTexture;
@@ -55,6 +74,9 @@ namespace our
             this->skyMaterial->alphaThreshold = 1.0f;
             this->skyMaterial->transparent = false;
         }
+
+        // Postprocessing is the process of applying visual effects to a rendered scene after the initial rendering pass.
+        //  This is often done by rendering the scene to a texture, and then rendering that texture on the screen with additional effects
 
         // Then we check if there is a postprocessing shader in the configuration
         if (config.contains("postprocess"))
@@ -172,6 +194,7 @@ namespace our
         auto M = owner->getLocalToWorldMatrix();
         glm::vec3 eye = glm::vec3(M * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
         glm::vec3 center = glm::vec3(M * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f));
+        // Camera Orientation forwad vector up , right
         glm::vec3 cameraForward = glm::normalize(center - eye);
 
         std::sort(transparentCommands.begin(), transparentCommands.end(), [cameraForward](const RenderCommand &first, const RenderCommand &second)
@@ -179,13 +202,13 @@ namespace our
                       // TODO: (Req 9) Finish this function
                       //  HINT: the following return should return true "first" should be drawn before "second".
                       //  we calculate dot product of the center point along camera forward direction
+                      //example : Blue is blocked although Red plane is semi-transparent so we must see the sphere blended with red  
                       float firstDistance = first.center.x * cameraForward.x + first.center.y * cameraForward.y + first.center.z * cameraForward.z;
                       float secondDistance = second.center.x * cameraForward.x + second.center.y * cameraForward.y + second.center.z * cameraForward.z;
                       // then we compare the 2 distance and put the further first (the logical operator here is >, but probably the cameraForward is inverted)
                       return firstDistance > secondDistance; });
 
         // TODO: (Req 9) Get the camera ViewProjection matrix and store it in VP
-        // vp = camera->getProjectionMatrix(this->windowSize) * camera->getViewMatrix();
 
         glm::mat4 VP = camera->getProjectionMatrix(this->windowSize) * camera->getViewMatrix();
         // TODO: (Req 9) Set the OpenGL viewport using viewportStart and viewportSize
@@ -265,13 +288,22 @@ namespace our
             //     0.0f, 1.0f, 0.0f, 0.0f,
             //     0.0f, 0.0f, 1.0f, 0.0f,
             //     0.0f, 0.0f, 0.0f, 1.0f);
+            // applied after the projection stage.
+
+            // The third row [0.0f, 0.0f, 0.0f, 0.0f] forces the z component to always become 0 after the transformation.
+            // In NDC space, this maps z to the farthest depth, effectively making the skybox render behind all other geometry.
+            //  The fourth row [0.0f, 0.0f, 1.0f, 1.0f] ensures the w-component of the resulting position remains consistent,
+            // as the w value determines perspective division.
             glm::mat4 alwaysBehindTransform = glm::mat4(
                 1.0f, 0.0f, 0.0f, 0.0f,
                 0.0f, 1.0f, 0.0f, 0.0f,
                 0.0f, 0.0f, 0.0f, 0.0f,
                 0.0f, 0.0f, 1.0f, 1.0f);
-            // TODO: (Req 10) set the "transform" uniform
 
+            // TODO: (Req 10) set the "transform" uniform
+            // skySphereModel: Transforms the sky sphere to world space.
+            // VP: Transforms from world space to camera space and then to clip space.
+            // alwaysBehindTransform: Ensures that the sky sphere is rendered behind other objects by manipulating depth.
             this->skyMaterial->shader->set("transform", alwaysBehindTransform * VP * skySphereModel);
             // TODO: (Req 10) draw the sky sphere
             this->skySphere->draw();
@@ -289,16 +321,19 @@ namespace our
         // If there is a postprocess material, apply postprocessing
         if (postprocessMaterial)
         {
+
             // TODO: (Req 11) Return to the default framebuffer
+            // This unbinds any custom framebuffers and binds the default framebuffer (ID 0).
             glBindFramebuffer(GL_FRAMEBUFFER, 0);
             // TODO: (Req 11) Setup the postprocess material and draw the fullscreen triangle
-
 
             // Draw the fullscreen triangle
             // We don't need to bind a vertex buffer since we are using the vertex array
             glBindVertexArray(postProcessVertexArray);
             postprocessMaterial->setup();
+            // tells OpenGL to interpret the vertices as a single triangle,
             glDrawArrays(GL_TRIANGLES, 0, 3);
+
             glBindVertexArray(0);
         }
     }
