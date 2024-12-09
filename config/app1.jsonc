@@ -1,0 +1,320 @@
+{
+    "start-scene": "menu",
+    "window": {
+        "title": "Exit Floor-7",
+        "size": {
+            "width": 1280,
+            "height": 720
+        },
+        "fullscreen": false
+    },
+    "clear": [
+        0.75, // Red component
+        0.921, // Green component
+        0.995, // Blue component
+        1.0 // Alpha component (fully opaque)
+    ],
+    "scene": {
+        "renderer": {
+            "sky": "assets/textures/cufe.jpg",
+            "postprocess": "assets/shaders/postprocess/vignette.frag"
+        },
+        "assets": {
+            "shaders": {
+                "tinted": {
+                    "vs": "assets/shaders/tinted.vert",
+                    "fs": "assets/shaders/tinted.frag"
+                },
+                "textured": {
+                    "vs": "assets/shaders/textured.vert",
+                    "fs": "assets/shaders/textured.frag"
+                }
+            },
+            "textures": {
+                "moon": "assets/textures/moon.jpg",
+                "grass": "assets/textures/floor.jpg",
+                "wood": "assets/textures/wood.jpg",
+                "glass": "assets/textures/wall.jpg",
+                "closed_door": "assets/textures/closed.jpg",
+                "sky": "assets/textures/sky.jpg"
+                //"ironman": "assets/textures/IronMan.jpg"
+            },
+            "meshes": {
+                "cube": "assets/models/cube.obj",
+                "monkey": "assets/models/monkey.obj",
+                "plane": "assets/models/plane.obj",
+                "sphere": "assets/models/sphere.obj"
+                //"body": "assets/models/IronMan.obj"
+            },
+            "samplers": {
+                "default": {},
+                "pixelated": {
+                    "MAG_FILTER": "GL_NEAREST"
+                }
+            },
+            "materials": {
+                "metal": {
+                    "type": "tinted",
+                    "shader": "tinted",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        0.45,
+                        0.4,
+                        0.5,
+                        1
+                    ]
+                },
+                "glass": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "glass",
+                    "sampler": "default"
+                },
+                "grass": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "grass",
+                    "sampler": "default"
+                },
+                "sky": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "sky",
+                    "sampler": "default"
+                },
+                "monkey": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "closed_door",
+                    "sampler": "default"
+                }
+            }
+        },
+        "world": [
+            {
+                "position": [
+                    0,
+                    0,
+                    10
+                ],
+                "components": [
+                    {
+                        "type": "Camera"
+                    },
+                    {
+                        "type": "Free Camera Controller"
+                    }
+                ],
+                "children": [
+                    {
+                        "position": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "rotation": [
+                            45,
+                            45,
+                            0
+                        ],
+                        "scale": [
+                            0.1,
+                            0.1,
+                            1.0
+                        ],
+                        "components": [
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "cube",
+                                "material": "metal"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "position": [
+                    0,
+                    -1,
+                    0
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "scale": [
+                    10,
+                    10,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "grass"
+                    }
+                ]
+            },
+            {
+                "position": [
+                    0,
+                    1,
+                    -2
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    2,
+                    2,
+                    2
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "glass"
+                    }
+                ]
+            },
+            {
+                "position": [
+                    10,
+                    1,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    90,
+                    0
+                ],
+                "scale": [
+                    10,
+                    2,
+                    2
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "glass"
+                    }
+                ]
+            },
+            {
+                "position": [
+                    -10,
+                    1,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    90,
+                    0
+                ],
+                "scale": [
+                    10,
+                    2,
+                    2
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "glass"
+                    }
+                ]
+            },
+            {
+                "position": [
+                    0,
+                    3,
+                    0
+                ],
+                "rotation": [
+                    90,
+                    0,
+                    0
+                ],
+                "scale": [
+                    2,
+                    2,
+                    2
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "sky"
+                    }
+                ]
+            }
+        ]
+    }
+}
