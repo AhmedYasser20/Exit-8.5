@@ -31,20 +31,24 @@
                 }
             },
             "textures": {
-                "moon": "assets/textures/moon.jpg",
                 "grass": "assets/textures/floor.jpg",
-                "wood": "assets/textures/wood.jpg",
-                "glass": "assets/textures/wall.jpg",
-                "closed_door": "assets/textures/closed.jpg",
-                "sky": "assets/textures/sky.jpg"
-                //"ironman": "assets/textures/IronMan.jpg"
+                "wall": "assets/textures/wall.jpg",
+                "sky": "assets/textures/sky.jpg",
+                "door": "assets/Room-Door/textures/Door_C.jpg",
+                "door_arm": "assets/Room-Door/textures/Reflexion.jpg",
+                "monkey": "assets/textures/monkey.png",
+                "laptop": "D:/College/Senior-2/Graphics/Exit-8.5/assets/Notebook/textures/Lowpoly_Laptop_2.jpg",
+                "man": "D:/College/Senior-2/Graphics/Exit-8.5/assets/man/tex/rp_dennis_posed_004_dif.jpg"
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
                 "monkey": "assets/models/monkey.obj",
                 "plane": "assets/models/plane.obj",
-                "sphere": "assets/models/sphere.obj"
-                //"body": "assets/models/IronMan.obj"
+                "sphere": "assets/models/sphere.obj",
+                "doormesh": "D:/College/Senior-2/Graphics/Exit-8.5/assets/Room-Door/Door_Component_BI3.obj",
+                "laptop": "D:/College/Senior-2/Graphics/Exit-8.5/assets/Notebook/Lowpoly_Notebook_2.obj",
+                "man": "D:/College/Senior-2/Graphics/Exit-8.5/assets/man/rp_dennis_posed_004_100k.OBJ"
+
             },
             "samplers": {
                 "default": {},
@@ -71,7 +75,7 @@
                         1
                     ]
                 },
-                "glass": {
+                "wall": {
                     "type": "textured",
                     "shader": "textured",
                     "pipelineState": {
@@ -88,7 +92,7 @@
                         1,
                         1
                     ],
-                    "texture": "glass",
+                    "texture": "wall",
                     "sampler": "default"
                 },
                 "grass": {
@@ -148,13 +152,33 @@
                         1,
                         1
                     ],
-                    "texture": "closed_door",
+                    "texture": "laptop",
+                    "sampler": "default"
+                },
+                "man": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "man",
                     "sampler": "default"
                 }
             }
         },
         "world": [
-            {
+            {//Player
                 "position": [
                     0,
                     0,
@@ -195,7 +219,7 @@
                     }
                 ]
             },
-            {
+            {//floor
                 "position": [
                     0,
                     -1,
@@ -207,7 +231,7 @@
                     0
                 ],
                 "scale": [
-                    10,
+                    5,
                     10,
                     1
                 ],
@@ -215,15 +239,15 @@
                     {
                         "type": "Mesh Renderer",
                         "mesh": "plane",
-                        "material": "grass"
+                        "material": "wall"
                     }
                 ]
             },
-            {
+            {//wall
                 "position": [
                     0,
                     1,
-                    -2
+                    -10
                 ],
                 "rotation": [
                     0,
@@ -231,45 +255,21 @@
                     0
                 ],
                 "scale": [
+                    5,
                     2,
-                    2,
-                    2
+                    1
                 ],
                 "components": [
                     {
                         "type": "Mesh Renderer",
                         "mesh": "plane",
-                        "material": "glass"
+                        "material": "wall"
                     }
                 ]
             },
-            {
+            {//side wall
                 "position": [
-                    10,
-                    1,
-                    0
-                ],
-                "rotation": [
-                    0,
-                    90,
-                    0
-                ],
-                "scale": [
-                    10,
-                    2,
-                    2
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            },
-            {
-                "position": [
-                    -10,
+                    5,
                     1,
                     0
                 ],
@@ -287,11 +287,99 @@
                     {
                         "type": "Mesh Renderer",
                         "mesh": "plane",
-                        "material": "glass"
+                        "material": "wall"
+                    }
+                ]
+            },
+            {//side wall
+                "position": [
+                    -5,
+                    1,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    90,
+                    0
+                ],
+                "scale": [
+                    10,
+                    2,
+                    2
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "wall"
                     }
                 ]
             },
             {
+                "position": [
+                    0,
+                    -0.9,
+                    -8
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "laptop",
+                        "material": "monkey"
+                    },
+                    {
+                        "type": "Movement",
+                        "angularVelocity": [
+                            0,
+                            20,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {//enemy
+                "position": [
+                    1,
+                    -1,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    -90,
+                    0
+                ],
+                "scale": [
+                    0.01,
+                    0.01,
+                    0.01
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "man",
+                        "material": "man"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [
+                            0,
+                            0,
+                            0.1
+                        ]
+                    }
+                ]
+            },
+            {//sky (ceiling)
                 "position": [
                     0,
                     3,
@@ -303,15 +391,15 @@
                     0
                 ],
                 "scale": [
-                    2,
-                    2,
-                    2
+                    5,
+                    10,
+                    1
                 ],
                 "components": [
                     {
                         "type": "Mesh Renderer",
                         "mesh": "plane",
-                        "material": "sky"
+                        "material": "wall"
                     }
                 ]
             }
