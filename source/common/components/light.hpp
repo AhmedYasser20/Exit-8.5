@@ -4,17 +4,37 @@
 
 #include <glm/glm.hpp>
 
-namespace our {
+namespace our
+{
 
-    class lightComponent : public Component {
-        public:
+    class lightComponent : public Component
+    {
+    public:
+        // The color of the light
+        glm::vec3 mLightColor = glm::vec3(1.0f, 1.0f, 1.0f); // white light color ;
 
-        glm::vec3 mLightColor = glm::vec3(1.0f , 1.0f , 1.0f); // white light color ; 
+        // type of the light
+        enum class LightType
+        {
+            Directional,
+            Point,
+            Spot
+        } mLightType = LightType::Directional;
 
+        // spot light properties, angle of the light cone
+        float innerCutoff = 30.0f;
+        // spot light properties, falloff of the light cone
+        float outerCutoff = 45.0f;
+        // spot light & directional light properties, direction of the light
+        glm::vec3 direction = glm::vec3(0.0f, -1.0f, 0.0f);
+        // attenuation properties
+        glm::vec3 attenuation = glm::vec3(1.0f, 0.09f, 0.032f);
+
+        // ID of the component is "Light"
         static std::string getID() { return "Light"; }
 
-
-        void deserialize(const nlohmann::json& data) override;
+        // Reads the data of the component from a json object
+        void deserialize(const nlohmann::json &data) override;
     };
 
 }
