@@ -38,7 +38,7 @@
                 "door_arm": "assets/Room-Door/textures/Reflexion.jpg",
                 "monkey": "assets/textures/monkey.png",
                 "laptop": "assets/Notebook/textures/Lowpoly_Laptop_2.jpg",
-                "man": "assets/man/tex/rp_dennis_posed_004_dif.jpg", 
+                "man": "assets/man/tex/rp_dennis_posed_004_dif.jpg",
                 "ladder": "assets/scala//all.png"
             },
             "meshes": {
@@ -193,13 +193,13 @@
                         1,
                         1
                     ],
-                    "texture": "laptop",  //should be changed
+                    "texture": "laptop", //should be changed
                     "sampler": "default"
                 }
             }
         },
         "world": [
-            {//Player
+            { //Player
                 "position": [
                     0,
                     0,
@@ -240,7 +240,7 @@
                     }
                 ]
             },
-            {//floor
+            { //floor
                 "position": [
                     0,
                     -1,
@@ -264,7 +264,7 @@
                     }
                 ]
             },
-            {//wall
+            { //wall
                 "position": [
                     0,
                     1,
@@ -288,7 +288,7 @@
                     }
                 ]
             },
-            {//side wall
+            { //side wall
                 "position": [
                     5,
                     1,
@@ -312,7 +312,7 @@
                     }
                 ]
             },
-            {//side wall
+            { //side wall
                 "position": [
                     -5,
                     1,
@@ -368,7 +368,7 @@
                     }
                 ]
             },
-            {//enemy
+            { //enemy
                 "position": [
                     1,
                     -1,
@@ -424,7 +424,226 @@
                     }
                 ]
             },
-            {//sky (ceiling)
+            { //sky (ceiling)
+                "position": [
+                    0,
+                    3,
+                    0
+                ],
+                "rotation": [
+                    90,
+                    0,
+                    0
+                ],
+                "scale": [
+                    5,
+                    10,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "wall"
+                    }
+                ]
+            }
+        ],
+        "world2": [
+            { //Player
+                "position": [
+                    0,
+                    0,
+                    10
+                ],
+                "components": [
+                    {
+                        "type": "Camera"
+                    },
+                    {
+                        "type": "Free Camera Controller"
+                    }
+                ],
+                "children": [
+                    {
+                        "position": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "rotation": [
+                            45,
+                            45,
+                            0
+                        ],
+                        "scale": [
+                            0.1,
+                            0.1,
+                            1.0
+                        ],
+                        "components": [
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "cube",
+                                "material": "metal"
+                            }
+                        ]
+                    }
+                ]
+            },
+            { //floor
+                "position": [
+                    0,
+                    -1,
+                    0
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "scale": [
+                    5,
+                    10,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "wall"
+                    }
+                ]
+            },
+            { //wall
+                "position": [
+                    0,
+                    1,
+                    -10
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    5,
+                    2,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "wall"
+                    }
+                ]
+            },
+            { //side wall
+                "position": [
+                    5,
+                    1,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    90,
+                    0
+                ],
+                "scale": [
+                    10,
+                    2,
+                    2
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "wall"
+                    }
+                ]
+            },
+            { //side wall
+                "position": [
+                    -5,
+                    1,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    90,
+                    0
+                ],
+                "scale": [
+                    10,
+                    2,
+                    2
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "wall"
+                    }
+                ]
+            },
+            {
+                "position": [
+                    0,
+                    -0.9,
+                    -8
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "laptop",
+                        "material": "monkey"
+                    },
+                    {
+                        "type": "Movement",
+                        "angularVelocity": [
+                            0,
+                            20,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {
+                "position": [
+                    0,
+                    -1,
+                    -5
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "ladder",
+                        "material": "ladder"
+                    }
+                ]
+            },
+            { //sky (ceiling)
                 "position": [
                     0,
                     3,

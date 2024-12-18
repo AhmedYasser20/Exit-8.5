@@ -9,7 +9,7 @@
 #include <asset-loader.hpp>
 
 // This state shows how to use the ECS framework and deserialization.
-class Playstate : public our::State
+class level1 : public our::State
 {
 
     our::World world;
@@ -27,9 +27,9 @@ class Playstate : public our::State
             our::deserializeAllAssets(config["assets"]);
         }
         // If we have a world in the scene config, we use it to populate our world
-        if (config.contains("world"))
+        if (config.contains("world2"))
         {
-            world.deserialize(config["world"]);
+            world.deserialize(config["world2"]);
         }
         // We initialize the camera controller system since it needs a pointer to the app
         cameraController.enter(getApp());
@@ -49,10 +49,10 @@ class Playstate : public our::State
         // Get a reference to the keyboard object
         auto &keyboard = getApp()->getKeyboard();
 
-        if (keyboard.justPressed(GLFW_KEY_K))
+        if (keyboard.justPressed(GLFW_KEY_ESCAPE))
         {
             // If the escape  key is pressed in this frame, go to the play state
-            getApp()->changeState("level1");
+            getApp()->changeState("menu");
         }
     }
 
