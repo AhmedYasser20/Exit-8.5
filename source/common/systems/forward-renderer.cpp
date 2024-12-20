@@ -155,8 +155,13 @@ namespace our
         CameraComponent *camera = nullptr;
         opaqueCommands.clear();
         transparentCommands.clear();
+        std::vector<lightComponent*> lightSrcs; 
+
         for (auto entity : world->getEntities())
         {
+            if(auto light = entity->getComponent<lightComponent>(); light){
+                lightSrcs.push_back(light); 
+            }    
             // If we hadn't found a camera yet, we look for a camera in this entity
             if (!camera)
                 camera = entity->getComponent<CameraComponent>();
@@ -262,6 +267,54 @@ namespace our
             glm::mat4 transform = VP * opaqueCommand.localToWorld;
             opaqueCommand.material->setup();
             opaqueCommand.material->shader->set("transform", transform);
+            if(dynamic_cast<LitMaterial*>(opaqueCommand.material)){
+                glm::mat4 M = opaqueCommand.localToWorld;
+                opaqueCommand.material->shader->set("M", M); 
+                opaqueCommand.material->shader->set("VP", VP);
+                glm::mat4 M_IT = glm::transpose(glm::inverse(M));
+                opaqueCommand.material->shader->set("M_IT", M_IT);
+                glm::vec3 camera_position = glm::vec3(camera->getOwner()->getLocalToWorldMatrix()*glm::vec4(0.0f,0.0f,0.0f,1.0f));
+                opaqueCommand.material->shader->set("camera_position", camera_position);
+
+                GLint light_count = lightSrcs.size();
+                opaqueCommand.material->shader->set("num_lights", light_count);
+
+                for(int i = 0 ; i < light_count ; i++) {
+                    lightComponent * light = lightSrcs[i];
+        
+                    std::string num = std::to_string(i); 
+                    std::string LightType = "lights["+num+"].LightType";
+                    std::string color = "lights["+num+"].color";
+                    std::string direction = "lights["+num+"].direction";
+                    std::string position = "lights["+num+"].position";
+                    std::string attenuation = "lights["+num+"].attenuation";
+                    std::string cone_angles = "lights["+num+"].cone_angles";
+                    std::cout << "fucken light bitch ass" <<std::endl; 
+                    std::cout << LightType <<std::endl; 
+                    
+                    opaqueCommand.material->shader->set(color, light->mLightColor);
+
+                    if(light->mLightType ==  lightComponent::LightType::Directional 💡){
+                        opaqueCommand.material->shader->set(LightType, 0);
+                        opaqueCommand.material->shader->set(direction, light->direction);
+                    }
+
+                    if(light->mLightType ==  lightComponent::LightType::Point ){
+                        opaqueCommand.material->shader->set(LightType, 1);
+                        opaqueCommand.material->shader->set(position, glm::vec3(light->getOwner()->getLocalToWorldMatrix()*glm::vec4(0.0f,0.0f,0.0f,1.0f)));
+                        opaqueCommand.material->shader->set(attenuation, light->attenuation);                          
+                    }
+
+                    if(light->mLightType ==  lightComponent::LightType::Spot ){
+                        opaqueCommand.material->shader->set(LightType, 2);
+                        opaqueCommand.material->shader->set(position, glm::vec3(light->getOwner()->getLocalToWorldMatrix()*glm::vec4(0.0f,0.0f,0.0f,1.0f)));
+                        opaqueCommand.material->shader->set(direction, light->direction);
+                        opaqueCommand.material->shader->set(attenuation, light->attenuation);
+                        opaqueCommand.material->shader->set(cone_angles, glm::vec2(light->innerCutoff, light->outerCutoff));
+
+                    }
+                }
+            }
             opaqueCommand.mesh->draw();
         }
         // glEnable(GL_DEPTH_TEST);

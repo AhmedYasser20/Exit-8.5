@@ -7,7 +7,7 @@ namespace our {
         if(!data.is_object()) return;
         mLightColor = data.value("color", mLightColor);
 
-        std::string lightType = data.value("type", "directional");
+        std::string lightType = data.value("lightType", "directional");
 
         if(lightType == "directional"){
             mLightType = LightType::Directional;
