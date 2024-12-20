@@ -51,6 +51,8 @@ float lambertian(vec3 normal, vec3 light_direction){
 }
 // Phong Reflection Model
 float phong(vec3 reflected, vec3 view, float shininess){
+    view = normalize(view);
+    reflected = normalize(reflected);
     return pow(max(0.0, dot(reflected, view)), shininess);
 }
 
