@@ -294,7 +294,7 @@ namespace our
                     
                     opaqueCommand.material->shader->set(color, light->mLightColor);
 
-                    if(light->mLightType ==  lightComponent::LightType::Directional 💡){
+                    if(light->mLightType ==  lightComponent::LightType::Directional){
                         opaqueCommand.material->shader->set(LightType, 0);
                         opaqueCommand.material->shader->set(direction, light->direction);
                     }
