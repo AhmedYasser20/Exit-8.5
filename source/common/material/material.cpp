@@ -75,19 +75,38 @@ namespace our {
     }
 
     void LitMaterial::setup() const {
-        TexturedMaterial::setup();
-        shader->set("material.ambient", ambient);
-        shader->set("material.diffuse", diffuse);
-        shader->set("material.specular", specular);
-        shader->set("material.shininess", shininess);
+        TexturedMaterial::setup();        
+        if(ambient_occlusion){
+            glActiveTexture(GL_TEXTURE1);
+            ambient_occlusion->bind();             
+            if(sampler)
+                sampler->bind(1);            
+            shader->set("material.ambient_occlusion", 1 );
+        }
+        if(specular){
+            glActiveTexture(GL_TEXTURE2);
+            specular->bind();             
+            if(sampler)
+                sampler->bind(2);            
+            shader->set("material.specular", 2);            
+        }
+        if(roughness){
+            glActiveTexture(GL_TEXTURE3);
+            roughness->bind();             
+            if(sampler)
+                sampler->bind(3);            
+            shader->set("material.roughness", 3);            
+        }
     }
     void LitMaterial::deserialize(const nlohmann::json& data) {
         TexturedMaterial::deserialize(data);
-        diffuse = data.value("diffuse", glm::vec3(0.7f, 0.7f, 0.7f));
-        specular= data.value("specular", glm::vec3(0.3f, 0.3f, 0.3f));
-        ambient = data.value("ambient", glm::vec3(0.1f, 0.1f, 0.1f));
-        shininess = data.value("shininess", 32.0f);
-        
+        ambient_occlusion = AssetLoader<Texture2D>::get(data.value("ambient_occlusion", ""));
+
+        std::string namespec = data.value("specular", "");
+        std::cout << namespec << std::endl;   
+        specular = AssetLoader<Texture2D>::get(namespec);
+        roughness = AssetLoader<Texture2D>::get(data.value("roughness", ""));
+            
     }
 
 }

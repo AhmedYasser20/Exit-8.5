@@ -18,10 +18,13 @@ struct Light {
 };
 
 struct Material{
-    vec3 ambient; // ambient color of materila 
-    vec3 diffuse; 
-    vec3 specular;
-    float shininess;
+    // vec3 ambient; // ambient color of materila 
+    // vec3 diffuse; 
+    // vec3 specular;
+    // float shininess;
+    sampler2D ambient_occlusion; // 1
+    sampler2D specular;          // 2 
+    sampler2D roughness;         // 3 
 };
 
 // Varyings
@@ -40,7 +43,7 @@ uniform int num_lights;
 uniform Material material;
 // uniform vec3 ambient_light; // Ambient Light Intensity ; separated since it is related to enviroment and not light source
 
-uniform sampler2D tex;
+uniform sampler2D tex; // albedo
 uniform vec4 tint;
 
 
@@ -57,7 +60,7 @@ float phong(vec3 reflected, vec3 view, float shininess){
 }
 
 
-vec3 calculateLighting(Light light, vec3 normal, vec3 view, vec3 fragment_pos) {
+vec3 calculateLighting(Light light, vec3 normal, vec3 view, vec3 fragment_pos, vec3 diffuse , vec3 specular , float shininess) {
     vec3 light_direction;
     float attenuation = 1.0; // default attenuation 
     
@@ -84,27 +87,44 @@ vec3 calculateLighting(Light light, vec3 normal, vec3 view, vec3 fragment_pos) {
     // Calculate diffuse
      // Diffuse Component [Diffuse = Kd * Id * Max(0,l.n) ]
    
-    vec3 diffuse = material.diffuse * light.color * lambertian(normal, light_direction);
+    vec3 computed_diffuse = diffuse * light.color * lambertian(normal, light_direction);
     
     // Specular Component [Specular = Ks * Is * Max(0, (r.v))^alpha]
     vec3 reflected = reflect(-light_direction, normal);
-    vec3 specular = material.specular * light.color * 
-                    phong(reflected, view, material.shininess);
+    vec3 computed_specular = specular * light.color * 
+                    phong(reflected, view,shininess);
     
-    return (diffuse + specular) * attenuation;
+    return (computed_specular + computed_diffuse) * attenuation;
 }
-void main(){
-    
-    vec3 initial_color =  vec3(tint * fs_in.color * texture(tex, fs_in.tex_coord));
-    
-    // vec3 ambient = ambient_light * material.ambient;
-    vec3 ambient =  material.ambient;
 
-    vec3 total_light = ambient; // adding ambient light to scene just one time 
+void main() {
+    // Get all texture values
+     // Get all texture values
+    vec3 albedo = texture(tex, fs_in.tex_coord).rgb * vec3(tint);
+    vec3 specular = texture(material.specular, fs_in.tex_coord).rgb;
+    float roughness = texture(material.roughness, fs_in.tex_coord).r;
+    float ao = texture(material.ambient_occlusion, fs_in.tex_coord).r;
+    
+    // Convert roughness to shininess
+    float shininess = 2.0/pow(clamp(roughness,0.001,0.99) ,4.0) - 2; 
+    
+    // Calculate ambient
+    vec3 ambient = albedo * ao;
+    
+    // Initialize total light with ambient
+    vec3 total_light = ambient*0.3;
+    
+    // Add contribution from all lights
     for(int i = 0; i < num_lights; i++) {
-        total_light += (calculateLighting(lights[i], fs_in.normal, fs_in.view, fs_in.fragment_position));
+        total_light += calculateLighting(
+            lights[i], 
+            normalize(fs_in.normal), // Ensure normal is normalized
+            fs_in.view, 
+            fs_in.fragment_position,
+            albedo,
+            specular,
+            shininess
+        );
     }
-
-    vec3 final_color = initial_color * total_light;
-    frag_color = vec4(final_color, 1.0);
+    frag_color = vec4(total_light, 1.0);
 }
