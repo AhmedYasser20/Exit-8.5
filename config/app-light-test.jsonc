@@ -39,7 +39,8 @@
                 "grass": "assets/textures/grass_ground_d.jpg",
                 "wood": "assets/textures/wood.jpg",
                 "glass": "assets/textures/glass-panels.png",
-                "monkey": "assets/textures/monkey.png"
+                "monkey": "assets/textures/monkey.png",
+                "wall": "assets/textures/brick-wall/albedoMap.jpg"
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
@@ -118,10 +119,10 @@
                     ],
                     "texture": "grass",
                     "sampler": "default",
-                    "ambient": [0.2, 0.2, 0.2],
+                    "ambient": [0.1, 0.1, 0.1],
                     "diffuse": [0.8, 0.8, 0.8],
                     "specular": [0.9, 0.9, 0.9],
-                    "shininess": 100.0
+                    "shininess": 50.0
                 },
                 "monkey": {
                     "type": "lit",
@@ -142,10 +143,10 @@
                     ],
                     "texture": "monkey",
                     "sampler": "default",
-                    "ambient": [0.2, 0.2, 0.2],
+                    "ambient": [0.1, 0.1, 0.1],
                     "diffuse": [0.8, 0.8, 0.8],
                     "specular": [0.9, 0.9, 0.9],
-                    "shininess": 100.0
+                    "shininess": 50.0
                 },
                 "moon": {
                     "type": "lit",
@@ -265,126 +266,6 @@
             {
                 "position": [
                     0,
-                    1,
-                    2
-                ],
-                "rotation": [
-                    0,
-                    0,
-                    0
-                ],
-                "scale": [
-                    2,
-                    2,
-                    2
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            },
-            {
-                "position": [
-                    0,
-                    1,
-                    -2
-                ],
-                "rotation": [
-                    0,
-                    0,
-                    0
-                ],
-                "scale": [
-                    2,
-                    2,
-                    2
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            },
-            {
-                "position": [
-                    2,
-                    1,
-                    0
-                ],
-                "rotation": [
-                    0,
-                    90,
-                    0
-                ],
-                "scale": [
-                    2,
-                    2,
-                    2
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            },
-            {
-                "position": [
-                    -2,
-                    1,
-                    0
-                ],
-                "rotation": [
-                    0,
-                    90,
-                    0
-                ],
-                "scale": [
-                    2,
-                    2,
-                    2
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            },
-            {
-                "position": [
-                    0,
-                    3,
-                    0
-                ],
-                "rotation": [
-                    90,
-                    0,
-                    0
-                ],
-                "scale": [
-                    2,
-                    2,
-                    2
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            },
-            {
-                "position": [
-                    0,
                     10,
                     0
                 ],
@@ -414,11 +295,11 @@
                     }
                 ]
             },
-            { // testlight
+            { // light spot
                 "position": [
-                    4,
-                    1,
-                    1
+                    0,
+                    0.9,
+                    5
                 ],
                 "rotation": [
                     0,  
@@ -426,22 +307,78 @@
                     0
                 ],
                 "scale": [
-                    2,
-                    2,
-                    2
+                    1,
+                    1,
+                    1
                 ],
                 "components": [
                     {
                         "type": "Light",
-                        "lightType": "directional",
-                        "direction":[0, 0 ,1 ], 
-                        "color": [3, 3, 3],
-                        "innerConeAngle": 20,
-                        "outerConeAngle": 50,
+                        "lightType": "spot",
+                        "direction":[0, -1 ,-0.5 ], 
+                        "color": [0, 3, 0],
+                        "innerConeAngle": 30.0,
+                        "outerConeAngle": 60.0,
                         "attenuation": [1, 0.014, 0.0007]
                     }
                 ]
-            }
+            },
+            { // light2 red point light above suza 
+            "position": [
+                0,
+                4,
+                0
+            ],
+            "rotation": [
+                0,  
+                0,
+                0
+            ],
+            "scale": [
+                1,
+                1,
+                1
+            ],
+            "components": [
+                {
+                    "type": "Light",
+                    "lightType": "point",
+                    "direction":[0, -1 ,0 ], 
+                    "color": [1, 0, 0],
+                    "innerConeAngle": 30.0,
+                    "outerConeAngle": 90.0,
+                    "attenuation": [1, 0.014, 0.0007]
+                }
+            ]
+        },
+        { // light spot
+            "position": [
+                0,
+                0.9,
+                -5
+            ],
+            "rotation": [
+                0,  
+                0,
+                0
+            ],
+            "scale": [
+                1,
+                1,
+                1
+            ],
+            "components": [
+                {
+                    "type": "Light",
+                    "lightType": "spot",
+                    "direction":[0, -1 ,0.5 ], 
+                    "color": [0, 3, 0],
+                    "innerConeAngle": 30.0,
+                    "outerConeAngle": 60.0,
+                    "attenuation": [1, 0.014, 0.0007]
+                }
+            ]
+        }
         ]
     }
 }

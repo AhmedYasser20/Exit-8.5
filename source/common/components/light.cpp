@@ -16,9 +16,9 @@ namespace our {
         } else if(lightType == "spot"){
             mLightType = LightType::Spot;
             // spot light properties, angle of the light cone
-            innerCutoff = data.value("innerCutoff", 30.0f);
+            innerConeAngle = data.value("innerConeAngle", 30.0f);
             // spot light properties, falloff of the light cone
-            outerCutoff = data.value("outerCutoff", 45.0f);
+            outerConeAngle = data.value("outerConeAngle", 45.0f);
         }
         // attenuation for spot light & directional light properties, direction of the light
         attenuation = data.value("attenuation", attenuation);

@@ -100,8 +100,8 @@
                     "sampler": "pixelated"
                 },
                 "grass": {
-                    "type": "lit",
-                    "shader": "lit",
+                    "type": "textured",
+                    "shader": "textured",
                     "pipelineState": {
                         "faceCulling": {
                             "enabled": false

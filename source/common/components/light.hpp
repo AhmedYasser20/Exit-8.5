@@ -22,9 +22,9 @@ namespace our
         } mLightType = LightType::Directional;
 
         // spot light properties, angle of the light cone
-        float innerCutoff = 30.0f;
+        float innerConeAngle = glm::radians(30.0f);
         // spot light properties, falloff of the light cone
-        float outerCutoff = 45.0f;
+        float outerConeAngle = glm::radians(45.0f);
         // spot light & directional light properties, direction of the light
         glm::vec3 direction = glm::vec3(0.0f, -1.0f, 0.0f);
         // attenuation properties

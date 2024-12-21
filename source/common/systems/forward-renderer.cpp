@@ -289,11 +289,9 @@ namespace our
                     std::string position = "lights["+num+"].position";
                     std::string attenuation = "lights["+num+"].attenuation";
                     std::string cone_angles = "lights["+num+"].cone_angles";
-                    std::cout << "fucken light bitch ass" <<std::endl; 
-                    std::cout << LightType <<std::endl; 
                     
                     opaqueCommand.material->shader->set(color, light->mLightColor);
-
+                    std::cout << (size_t)light->mLightType <<std::endl; 
                     if(light->mLightType ==  lightComponent::LightType::Directional){
                         opaqueCommand.material->shader->set(LightType, 0);
                         opaqueCommand.material->shader->set(direction, light->direction);
@@ -310,7 +308,7 @@ namespace our
                         opaqueCommand.material->shader->set(position, glm::vec3(light->getOwner()->getLocalToWorldMatrix()*glm::vec4(0.0f,0.0f,0.0f,1.0f)));
                         opaqueCommand.material->shader->set(direction, light->direction);
                         opaqueCommand.material->shader->set(attenuation, light->attenuation);
-                        opaqueCommand.material->shader->set(cone_angles, glm::vec2(light->innerCutoff, light->outerCutoff));
+                        opaqueCommand.material->shader->set(cone_angles, glm::vec2(glm::radians(light->innerConeAngle), glm::radians(light->outerConeAngle)));
 
                     }
                 }
