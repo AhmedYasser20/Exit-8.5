@@ -31,16 +31,15 @@
                 }
             },
             "textures": {
-                "grass": "assets/textures/floor.jpg",
+                "floor": "assets/textures/floor.jpg",
                 "wall": "assets/textures/wall.jpg",
                 "sky": "assets/textures/sky.jpg",
-                "door": "assets/Room-Door/textures/Door_C.jpg",
-                "door_arm": "assets/Room-Door/textures/Reflexion.jpg",
+                "door": "assets/textures/closed.jpg",
                 "monkey": "assets/textures/monkey.png",
                 "laptop": "assets/Notebook/textures/Lowpoly_Laptop_2.jpg",
-                "man": "assets/man/tex/rp_dennis_posed_004_dif.jpg",
-                "ladder": "assets/scala//all.png",
-                "testing": "assets/textures/grass_ground_d.jpg"
+                "green-bar": "assets/textures/green-bar.png",
+                "fire-extinguisher": "assets/FireExtinguisher/FireExtinguisher_D.png"
+                
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
@@ -49,29 +48,21 @@
                 "sphere": "assets/models/sphere.obj",
                 "doormesh": "assets/Room-Door/Door_Component_BI3.obj",
                 "laptop": "assets/Notebook/Lowpoly_Notebook_2.obj",
-                "man": "assets/man/rp_dennis_posed_004_100k.OBJ",
-                "ladder": "assets/scala/scala.obj"
+                "FireExtinguisher": "assets/FireExtinguisher/fire extinguisher.obj"
             },
             "samplers": {
                 "default": {},
                 "pixelated": {
                     "MAG_FILTER": "GL_NEAREST"
+                },
+                "repeat": {
+                    "MAG_FILTER": "GL_NEAREST",
+                    "MIN_FILTER": "GL_NEAREST",
+                    "WRAP_S": "GL_REPEAT",
+                    "WRAP_T": "GL_REPEAT"
                 }
             },
             "materials": {
-                "debug":{
-                    "type": "tinted",
-                    "shader": "tinted",
-                    "pipelineState": {
-                        "faceCulling":{
-                            "enabled": false
-                        },
-                        "depthTesting":{
-                            "enabled": true
-                        }
-                    },
-                    "tint": [1, 0, 1, 1]
-                },
                 "metal": {
                     "type": "tinted",
                     "shader": "tinted",
@@ -110,7 +101,7 @@
                     "texture": "wall",
                     "sampler": "default"
                 },
-                "grass": {
+                "floor": {
                     "type": "textured",
                     "shader": "textured",
                     "pipelineState": {
@@ -127,8 +118,8 @@
                         1,
                         1
                     ],
-                    "texture": "grass",
-                    "sampler": "default"
+                    "texture": "floor",
+                    "sampler": "repeat"
                 },
                 "sky": {
                     "type": "textured",
@@ -170,7 +161,7 @@
                     "texture": "laptop",
                     "sampler": "default"
                 },
-                "man": {
+                "door": {
                     "type": "textured",
                     "shader": "textured",
                     "pipelineState": {
@@ -187,10 +178,10 @@
                         1,
                         1
                     ],
-                    "texture": "man",
+                    "texture": "door",
                     "sampler": "default"
                 },
-                "ladder": {
+                "bar": {
                     "type": "textured",
                     "shader": "textured",
                     "pipelineState": {
@@ -207,305 +198,33 @@
                         1,
                         1
                     ],
-                    "texture": "laptop", //should be changed
+                    "texture": "green-bar",
+                    "sampler": "default"
+                },
+                "fire-extinguisher": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "fire-extinguisher",
                     "sampler": "default"
                 }
             }
         },
-        "physicsWorld":{
-            // all of them are optional and have default values check PhysicsWorld.h for more info
-            // "defaultVelocitySolverNbIterations": 15,
-            // "defaultPositionSolverNbIterations": 8,
-            // "isSleepingEnabled":false,
-            // "gravity":[0,-9.81,0],
-            // "worldName": "MainWorld",
-        },
         "world": [
-            { //Player
-                "position": [
-                    0,
-                    0,
-                    0
-                ],
-                "components": [
-                    {
-                        "type": "Camera"
-                    },
-                    {
-                        "type": "Free Camera Controller"
-                    },
-                    {
-                        "type": "RigidBody",
-                        "r3dType": "Dynamic", // Satic->floor, Kinematic->moving platforms, Dynamic->player  // default is Static
-                        "enableGravity": true, // default is false
-                        "allowedToSleep": false, // default is false: keep as false for player or moving object, true for static objects
-                        "rotaionAxis": [0,0,0], //default [1,1,1]
-                        "motionAxis": [1,1,1], //default [1,1,1]
-                        "collider":{
-                            "type": "Box Collider",
-                            "halfExtents": [0.2, 0.2, 0.2],
-                            // "type": "Sphere Collider",
-                            // "radius": 0.5,
-                            // "type": "Capsule Collider",
-                            // "radius": 0.5,
-                            // "height": 1.0,
-                            
-                            // for material
-                            "bounciness":0.0,
-                            "friction": 1.0,
-                            
-                            // for trigger
-                            "isTrigger": false // default is false
-                        }
-                    }
-                ],
-                "children": [
-                    {
-                        "position": [
-                            1,
-                            -1,
-                            -1
-                        ],
-                        "rotation": [
-                            45,
-                            45,
-                            0
-                        ],
-                        "scale": [
-                            0.1,
-                            0.1,
-                            0.1
-                        ],
-                        "components": [
-                            {
-                                "type": "Mesh Renderer",
-                                "mesh": "cube",
-                                "material": "metal"
-                            }
-                        ]
-                    }
-                ]
-            },
-            { //floor
-                "position": [
-                    0,
-                    -1,
-                    0
-                ],
-                "rotation": [
-                    -90,
-                    0,
-                    0
-                ],
-                "scale": [
-                    5,
-                    15,
-                    1
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "wall"
-                    }
-                ]
-            },
-            { //wall
-                "position": [
-                    0,
-                    1,
-                    -10
-                ],
-                "rotation": [
-                    0,
-                    0,
-                    0
-                ],
-                "scale": [
-                    5,
-                    2,
-                    1
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "wall"
-                    }
-                ]
-            },
-            {//side wall
-                "position": [
-                    5,
-                    1,
-                    0
-                ],
-                "rotation": [
-                    0,
-                    90,
-                    0
-                ],
-                "scale": [
-                    15,
-                    2,
-                    2
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "wall"
-                    }
-                ]
-            },
-            { //side wall
-                "position": [
-                    -5,
-                    1,
-                    0
-                ],
-                "rotation": [
-                    0,
-                    90,
-                    0
-                ],
-                "scale": [
-                    15,
-                    2,
-                    2
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "wall"
-                    },
-                    {
-                        "type": "RigidBody",
-                        "rp3dType": "Static",
-                        "collider":{
-                            "type": "Box Collider",
-                            "halfExtents": [15, 1, 1],
-                            "bounciness":0.0
-                        }
-                    }
-                ]
-            },
-            {
-                "position": [
-                    0,
-                    -0.9,
-                    -8
-                ],
-                "rotation": [
-                    0,
-                    0,
-                    0
-                ],
-                "scale": [
-                    0.2,
-                    0.2,
-                    0.2
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "laptop",
-                        "material": "monkey"
-                    },
-                    {
-                        "type": "Movement",
-                        "angularVelocity": [
-                            0,
-                            20,
-                            0
-                        ]
-                    }
-                ]
-            },
-            { //enemy
-                "position": [
-                    1,
-                    -1,
-                    0
-                ],
-                "rotation": [
-                    0,
-                    -90,
-                    0
-                ],
-                "scale": [
-                    0.01,
-                    0.01,
-                    0.01
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "man",
-                        "material": "man"
-                    },
-                    {
-                        "type": "Movement",
-                        "linearVelocity": [
-                            0,
-                            0,
-                            0.1
-                        ]
-                    }
-                ]
-            },
-            {
-                "position": [
-                    0,
-                    -1,
-                    -5
-                ],
-                "rotation": [
-                    0,
-                    0,
-                    0
-                ],
-                "scale": [
-                    0.1,
-                    0.1,
-                    0.1
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "ladder",
-                        "material": "ladder"
-                    }
-                ]
-            },
-            { //sky (ceiling)
-                "position": [
-                    0,
-                    3,
-                    0
-                ],
-                "rotation": [
-                    90,
-                    0,
-                    0
-                ],
-                "scale": [
-                    5,
-                    10,
-                    1
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "wall"
-                    }
-                ]
-            }
-        ],
-        "world2": [
-            { //Player
+            {//Player
                 "position": [
                     0,
                     0,
@@ -521,21 +240,9 @@
                 ],
                 "children": [
                     {
-                        "position": [
-                            1,
-                            -1,
-                            -1
-                        ],
-                        "rotation": [
-                            45,
-                            45,
-                            0
-                        ],
-                        "scale": [
-                            0.1,
-                            0.1,
-                            1.0
-                        ],
+                        "position": [1, -1, -1],
+                        "rotation": [45, 45, 0],
+                        "scale": [0.1, 0.1, 1.0],
                         "components": [
                             {
                                 "type": "Mesh Renderer",
@@ -546,22 +253,22 @@
                     }
                 ]
             },
-            { //floor
-                "position": [
-                    0,
-                    -1,
-                    0
-                ],
-                "rotation": [
-                    -90,
-                    0,
-                    0
-                ],
-                "scale": [
-                    5,
-                    10,
-                    1
-                ],
+            {//floor
+                "position": [0, -1, 0],
+                "rotation": [-90, 0, 0],
+                "scale": [5, 10, 1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "floor"
+                    }
+                ]
+            },
+            {//front wall
+                "position": [0, 1, -10],
+                "rotation": [0, 0, 0],
+                "scale": [5, 2, 1],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -570,22 +277,10 @@
                     }
                 ]
             },
-            { //wall
-                "position": [
-                    0,
-                    1,
-                    -10
-                ],
-                "rotation": [
-                    0,
-                    0,
-                    0
-                ],
-                "scale": [
-                    5,
-                    2,
-                    1
-                ],
+            {//back wall
+                "position": [0, 1, 10],
+                "rotation": [0, 0, 0],
+                "scale": [5, 2, 1],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -594,22 +289,34 @@
                     }
                 ]
             },
-            { //side wall
-                "position": [
-                    5,
-                    1,
-                    0
-                ],
-                "rotation": [
-                    0,
-                    90,
-                    0
-                ],
-                "scale": [
-                    10,
-                    2,
-                    2
-                ],
+            {//front bar 
+                "position": [0, 2.2, -9.95],
+                "rotation": [0, 0, 0],
+                "scale": [5, 0.1, 1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "bar"
+                    }
+                ]
+            },
+            {//back bar 
+                "position": [0, 2.2, 9.95],
+                "rotation": [0, 0, 0],
+                "scale": [5, 0.1, 1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "bar"
+                    }
+                ]
+            },
+            {//right side wall
+                "position": [5, 1, 0],
+                "rotation": [0, 90, 0],
+                "scale": [10, 2, 2],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -618,22 +325,106 @@
                     }
                 ]
             },
-            { //side wall
-                "position": [
-                    -5,
-                    1,
-                    0
-                ],
-                "rotation": [
-                    0,
-                    90,
-                    0
-                ],
-                "scale": [
-                    10,
-                    2,
-                    2
-                ],
+            {//right door 1
+                "position": [4.90, 0.5, 0],
+                "rotation": [0, 90, 0],
+                "scale": [0.7, 1.5, 0.7],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "door"
+                    }
+                ]
+            },
+            {//right door 2
+                "position": [4.9, 0.5, 6],
+                "rotation": [0, 90, 0],
+                "scale": [0.7, 1.5, 0.7],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "door"
+                    }
+                ]
+            },
+            {//right door 3
+                "position": [4.9, 0.5, -6],
+                "rotation": [0, 90, 0],
+                "scale": [0.7, 1.5, 0.7],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "door"
+                    }
+                ]
+            },
+            {//left door 1
+                "position": [-4.9, 0.5, 0],
+                "rotation": [0, 90, 0],
+                "scale": [0.7, 1.5, 0.7],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "door"
+                    }
+                ]
+            },
+            {//left door 2
+                "position": [-4.9, 0.5, 6],
+                "rotation": [0, 90, 0],
+                "scale": [0.7, 1.5, 0.7],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "door"
+                    }
+                ]
+            },
+            {//left door 3
+                "position": [-4.9, 0.5, -6],
+                "rotation": [0, 90, 0],
+                "scale": [0.7, 1.5, 0.7],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "door"
+                    }
+                ]
+            },
+            {//right bar 
+                "position": [4.95, 2.2, 0],
+                "rotation": [0, 90, 0],
+                "scale": [10, 0.1, 1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "bar"
+                    }
+                ]
+            },
+            {//left bar 
+                "position": [-4.95, 2.2, 0],
+                "rotation": [0, 90, 0],
+                "scale": [10, 0.1, 1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "bar"
+                    }
+                ]
+            },
+            {//left side wall
+                "position": [ -5, 1, 0 ],
+                "rotation": [ 0, 90, 0 ],
+                "scale": [ 10, 2, 2 ],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -642,22 +433,10 @@
                     }
                 ]
             },
-            {
-                "position": [
-                    0,
-                    -0.9,
-                    -8
-                ],
-                "rotation": [
-                    0,
-                    0,
-                    0
-                ],
-                "scale": [
-                    0.2,
-                    0.2,
-                    0.2
-                ],
+            {//laptop
+                "position": [0, -0.9, -8],
+                "rotation": [0, 0, 0],
+                "scale": [0.2, 0.2, 0.2],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -674,46 +453,22 @@
                     }
                 ]
             },
-            {
-                "position": [
-                    0,
-                    -1,
-                    -5
-                ],
-                "rotation": [
-                    0,
-                    0,
-                    0
-                ],
-                "scale": [
-                    0.1,
-                    0.1,
-                    0.1
-                ],
+            {//fire-extinguisher
+                "position": [4, -1, -9],
+                "rotation": [0, 0, 0],
+                "scale": [5, 5, 5],
                 "components": [
                     {
                         "type": "Mesh Renderer",
-                        "mesh": "ladder",
-                        "material": "ladder"
+                        "mesh": "FireExtinguisher",
+                        "material": "fire-extinguisher"
                     }
                 ]
             },
-            { //sky (ceiling)
-                "position": [
-                    0,
-                    3,
-                    0
-                ],
-                "rotation": [
-                    90,
-                    0,
-                    0
-                ],
-                "scale": [
-                    5,
-                    15,
-                    1
-                ],
+            {//sky (ceiling)
+                "position": [0, 3, 0],
+                "rotation": [90, 0, 0],
+                "scale": [5, 10, 1],
                 "components": [
                     {
                         "type": "Mesh Renderer",
