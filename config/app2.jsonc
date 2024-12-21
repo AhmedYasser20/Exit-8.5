@@ -1,0 +1,550 @@
+{
+    "start-scene": "menu",
+    "window": {
+        "title": "Exit Floor-7",
+        "size": {
+            "width": 1280,
+            "height": 720
+        },
+        "fullscreen": false
+    },
+    "clear": [
+        0.75, // Red component
+        0.921, // Green component
+        0.995, // Blue component
+        1.0 // Alpha component (fully opaque)
+    ],
+    "scene": {
+        "renderer": {
+            "sky": "assets/textures/cufe.jpg",
+            "postprocess": "assets/shaders/postprocess/vignette.frag"
+        },
+        "assets": {
+            "shaders": {
+                "tinted": {
+                    "vs": "assets/shaders/tinted.vert",
+                    "fs": "assets/shaders/tinted.frag"
+                },
+                "textured": {
+                    "vs": "assets/shaders/textured.vert",
+                    "fs": "assets/shaders/textured.frag"
+                }
+            },
+            "textures": {
+                "grass": "assets/textures/floor.jpg",
+                "wall": "assets/textures/wall.jpg",
+                "sky": "assets/textures/sky.jpg",
+                "door": "assets/Room-Door/textures/Door_C.jpg",
+                "door_arm": "assets/Room-Door/textures/Reflexion.jpg",
+                "monkey": "assets/textures/monkey.png",
+                "laptop": "assets/Notebook/textures/Lowpoly_Laptop_2.jpg",
+                "man": "assets/man/tex/rp_dennis_posed_004_dif.jpg", 
+                "ladder": "assets/scala/all.png",
+                "residential1" : "assets/obj/textures/AussenWand_C.jpg",    
+                "residential2" : "assets/obj/textures/AussenWand_N.jpg",
+                "residential3" : "assets/obj/textures/Box_D.jpg",  
+                "residential4" : "assets/obj/textures/Box_N.jpg",
+                "residential5" : "assets/obj/textures/Hotel_Hous_AO.png",
+                "residential6" : "assets/obj/textures/Hotel_Hous_C.jpg",
+                "blockwall" : "assets/Wall/1_'.jpg",
+                "blockwall2" : "assets/Wall/5.jpg"           
+            },
+            "meshes": {
+                "cube": "assets/models/cube.obj",
+                "monkey": "assets/models/monkey.obj",
+                "plane": "assets/models/plane.obj",
+                "sphere": "assets/models/sphere.obj",
+                "doormesh": "assets/Room-Door/Door_Component_BI3.obj",
+                "laptop": "assets/Notebook/Lowpoly_Notebook_2.obj",
+                "man": "assets/man/rp_dennis_posed_004_100k.OBJ",
+                "residential1" : "assets/obj/Residential_Buildings_001.obj",
+                "residential2" : "assets/obj/Residential Buildings 002.obj",
+                "residential3" : "assets/obj/Residential Buildings 003.obj",
+                "residential4" : "assets/obj/Residential Buildings 004.obj",
+                "residential5" : "assets/obj/Residential Buildings 005.obj",
+                "residential6" : "assets/obj/Residential Buildings 006.obj",
+                "residential7" : "assets/obj/Residential Buildings 007.obj",
+                "residential8" : "assets/obj/Residential Buildings 008.obj",
+                "residential9" : "assets/obj/Residential Buildings 009.obj",
+                "residential10" : "assets/obj/Residential Buildings 010.obj",
+                "blockwall" : "assets/Wall/wall.obj"
+            },
+            "samplers": {
+                "default": {},
+                "pixelated": {
+                    "MAG_FILTER": "GL_NEAREST"
+                }
+            },
+            "materials": {
+                "debug":{
+                    "type": "tinted",
+                    "shader": "tinted",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 0, 1, 1]
+                },
+                "metal": {
+                    "type": "tinted",
+                    "shader": "tinted",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        0.45,
+                        0.4,
+                        0.5,
+                        1
+                    ]
+                },
+                "wall": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "wall",
+                    "sampler": "default"
+                },
+                "blockwall": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "blockwall",
+                    "sampler": "default"
+                },
+                "grass": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "grass",
+                    "sampler": "default"
+                },
+                "sky": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "sky",
+                    "sampler": "default"
+                },
+                "monkey": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "laptop",
+                    "sampler": "default"
+                },
+                "man": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "man",
+                    "sampler": "default"
+                },
+                "Res1": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "residential5",  
+                    "sampler": "default"
+                },
+                "Res2": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "residential3",  //should be changed
+                    "sampler": "default"
+                }
+            }
+        },
+        "physicsWorld":{},
+        "world": [
+            {//Player
+                "position": [0, 0, 10],
+                "components": [
+                    {
+                        "type": "Camera"
+                    },
+                    {
+                        "type": "Free Camera Controller"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "r3dType": "Dynamic", // Satic->floor, Kinematic->moving platforms, Dynamic->player  // default is Static
+                        "enableGravity": true, // default is false
+                        "allowedToSleep": false, // default is false: keep as false for player or moving object, true for static objects
+                        "rotaionAxis": [0,0,0], //default [1,1,1]
+                        "motionAxis": [1,1,1], //default [1,1,1]
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [0.2, 0.2, 0.2],
+                            // "type": "Sphere Collider",
+                            // "radius": 0.5,
+                            // "type": "Capsule Collider",
+                            // "radius": 0.5,
+                            // "height": 1.0,
+                            
+                            // for material
+                            "bounciness":0.0,
+                            "friction": 1.0,
+                            
+                            // for trigger
+                            "isTrigger": false // default is false
+                        }
+                    }
+                ]//,
+            },
+            {//test object
+                "position": [0, -4, 30],
+                "rotation": [0, 0, 0],
+                "scale": [0.5, 0.5, 0.5],
+                "components": [{"type": "Mesh Renderer", "mesh": "residential9", "material": "Res1"},
+                    {
+                        "type": "RigidBody",
+                        "rp3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [1, 1, 1],
+                            "bounciness":0.0
+                        }
+                    }
+                ]
+            },
+            {//test object 2
+                "position": [10, -4, 40],
+                "rotation": [0, 0, 0],
+                "scale": [0.5, 0.5, 0.5],
+                "components": [{"type": "Mesh Renderer", "mesh": "residential10", "material": "Res1"},
+                    {
+                        "type": "RigidBody",
+                        "rp3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [3, 1, 1],
+                            "bounciness":0.0
+                        }
+                    }
+                ]
+            },
+            {//stais
+                "position": [6, -1, 15],
+                "rotation": [0, 0, 0],
+                "scale": [3, 0.1, 0.3],
+                "components": [{"type": "Mesh Renderer", "mesh": "cube", "material": "metal"},
+                    {
+                        "type": "RigidBody",
+                        "rp3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [3, 1, 1],
+                            "bounciness":0.0
+                        }
+                    }
+                ]
+            },
+            {//stais
+                "position": [6, -1, 16],
+                "rotation": [0, 0, 0],
+                "scale": [3, 0.1, 0.7],
+                "components": [{"type": "Mesh Renderer", "mesh": "cube", "material": "metal"},
+                    {
+                        "type": "RigidBody",
+                        "rp3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [3, 1, 1],
+                            "bounciness":0.0
+                        }
+                    }
+                ]
+            },
+            {//stais
+                "position": [6, -2, 17],
+                "rotation": [0, 0, 0],
+                "scale": [3, 0.6, 0.7],
+                "components": [{"type": "Mesh Renderer", "mesh": "cube", "material": "metal"},
+                    {
+                        "type": "RigidBody",
+                        "rp3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [3, 1, 1],
+                            "bounciness":0.0
+                        }
+                    }
+                ]
+            },
+            {//stais
+                "position": [6, -3, 18],
+                "rotation": [0, 0, 0],
+                "scale": [3, 0.6, 0.7],
+                "components": [{"type": "Mesh Renderer", "mesh": "cube", "material": "metal"},
+                    {
+                        "type": "RigidBody",
+                        "rp3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [3, 1, 1],
+                            "bounciness":0.0
+                        }
+                    }
+                ]
+            },
+            {//stais
+                "position": [6, -4, 19],
+                "rotation": [0, 0, 0],
+                "scale": [3, 0.6, 0.7],
+                "components": [{"type": "Mesh Renderer", "mesh": "cube", "material": "metal"},
+                    {
+                        "type": "RigidBody",
+                        "rp3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [3, 1, 1],
+                            "bounciness":0.0
+                        }
+                    }
+                ]
+            },
+            {//down floor
+               "position": [6, -4, 19],
+               "rotation": [-90, 0, 0],
+               "scale": [15, 15, 1],
+               "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "wall"},
+                   {
+                       "type": "RigidBody",
+                       "rp3dType": "Static",
+                       "collider":{
+                           "type": "Box Collider",
+                           "halfExtents": [15, 15, 1],
+                           "bounciness":0.0
+                       }
+                   }
+               ]
+           },
+            {//up floor
+                "position": [0, -1, 0],
+                "rotation": [-90, 0, 0],
+                "scale": [15, 15, 1],
+                "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "wall"},
+                    {
+                        "type": "RigidBody",
+                        "rp3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [15, 15, 1],
+                            "bounciness":0.0
+                        }
+                    }
+                ]
+            },
+            {//wall
+                "position": [0, 1, -10],
+                "rotation": [0, 0, 0],
+                "scale": [5, 2, 1],
+                "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "wall"},
+                    {
+                        "type": "RigidBody",
+                        "rp3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [5, 2, 1],
+                            "bounciness":0.0
+                        }
+                    }
+                ]
+            },
+            {//wall behind the stairs
+                "position": [3, -3, 15],
+                "rotation": [0, 0, 0],
+                "scale": [18, 2, 1],
+                "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "wall"},
+                    {
+                        "type": "RigidBody",
+                        "rp3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [1, 1, 1],
+                            "bounciness":0.0
+                        }
+                    }
+                ]
+            },
+            {//wall above the stairs
+                "position": [10, 0, 10],
+                "rotation": [0, 0, 0],
+                "scale": [5, 5, 1],
+                "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "wall"},
+                    {
+                        "type": "RigidBody",
+                        "rp3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [5, 5, 1],
+                            "bounciness":0.0
+                        }
+                    }
+                ]
+            },
+            {//blockwall above the stairs left
+                "position": [12, -1, 15],
+                "rotation": [0, 0, 0],
+                "scale": [0.5, 0.2, 0.2],
+                "components": [{"type": "Mesh Renderer", "mesh": "blockwall", "material": "blockwall"},
+                    {
+                        "type": "RigidBody",
+                        "rp3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [3, 2, 1],
+                            "bounciness":0.0
+                        }
+                    }
+                ]
+            },
+            {//blockwall above the stairs right
+                "position": [-1, -1, 15],
+                "rotation": [0, 0, 0],
+                "scale": [0.7, 0.2, 0.2],
+                "components": [{"type": "Mesh Renderer", "mesh": "blockwall", "material": "blockwall"},
+                    {
+                        "type": "RigidBody",
+                        "rp3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [3, 2, 1],
+                            "bounciness":0.0
+                        }
+                    }
+                ]
+            },
+            {//side wall elevator
+                "position": [5, -1, 0],
+                "rotation": [0, 90, 0],
+                "scale": [10, 4, 2],
+                "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "wall"},
+                    {
+                        "type": "RigidBody",
+                        "rp3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [10, 1, 1],
+                            "bounciness":0.0
+                        }
+                    }
+                ]
+            },
+            {//side wall long
+                "position": [-5, -1, 10],
+                "rotation": [0, 90, 0],
+                "scale": [25, 4, 2],
+                "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "wall"},
+                    {
+                        "type": "RigidBody",
+                        "rp3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [25, 4, 2],
+                            "bounciness":0.0
+                        }
+                    }
+                ]
+            },
+            {//side wall
+                "position": [15, -1, 10],
+                "rotation": [0, 90, 0],
+                "scale": [25, 4, 2],
+                "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "wall"},
+                    {
+                        "type": "RigidBody",
+                        "rp3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [25, 4, 2],
+                            "bounciness":0.0
+                        }
+                    }
+                ]
+            },
+            {//sky (ceiling)
+                "position": [0, 3, 0],
+                "rotation": [90, 0, 0],
+                "scale": [30, 15, 1],
+                "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "wall"}
+                ]
+            }
+        ]
+    }
+}
