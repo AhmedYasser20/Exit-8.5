@@ -223,19 +223,31 @@
                 }
             }
         },
+        "physicsWorld":{},
         "world": [
             {//Player
-                "position": [
-                    0,
-                    0,
-                    10
-                ],
+                "position": [0, 1, 7],
                 "components": [
                     {
                         "type": "Camera"
                     },
                     {
                         "type": "Free Camera Controller"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "r3dType": "Dynamic", // Satic->floor, Kinematic->moving platforms, Dynamic->player  // default is Static
+                        "enableGravity": true, // default is false
+                        "allowedToSleep": false, // default is false: keep as false for player or moving object, true for static objects
+                        "rotaionAxis": [0,0,0], //default [1,1,1]
+                        "motionAxis": [1,1,1], //default [1,1,1]
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [0.5, 0.5, 0.5],                            
+                            "bounciness":0.0,
+                            "friction": 1.0,                            
+                            "isTrigger": false // default is false
+                        }
                     }
                 ],
                 "children": [
@@ -262,6 +274,15 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "floor"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "r3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [5, 10, 1],
+                            "bounciness":0.0
+                        }
                     }
                 ]
             },
@@ -274,6 +295,15 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "wall"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "r3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [5, 2, 1],
+                            "bounciness":0.0
+                        }
                     }
                 ]
             },
@@ -286,6 +316,15 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "wall"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "r3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [5, 2, 1],
+                            "bounciness":0.0
+                        }
                     }
                 ]
             },
@@ -298,6 +337,15 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "bar"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "r3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [5, 1, 1],
+                            "bounciness":0.0
+                        }
                     }
                 ]
             },
@@ -310,6 +358,15 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "bar"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "r3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [5, 1, 1],
+                            "bounciness":0.0
+                        }
                     }
                 ]
             },
@@ -322,6 +379,15 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "wall"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "r3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [10, 2, 2],
+                            "bounciness":0.0
+                        }
                     }
                 ]
             },
@@ -334,6 +400,15 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "door"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "r3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [1, 2, 1],
+                            "bounciness":0.0
+                        }
                     }
                 ]
             },
@@ -346,6 +421,15 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "door"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "r3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [1, 2, 1],
+                            "bounciness":0.0
+                        }
                     }
                 ]
             },
@@ -358,6 +442,15 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "door"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "r3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [1, 2, 1],
+                            "bounciness":0.0
+                        }
                     }
                 ]
             },
@@ -370,6 +463,15 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "door"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "r3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [1, 2, 1],
+                            "bounciness":0.0
+                        }
                     }
                 ]
             },
@@ -382,6 +484,15 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "door"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "r3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [1, 2, 1],
+                            "bounciness":0.0
+                        }
                     }
                 ]
             },
@@ -394,6 +505,15 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "door"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "r3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [1, 2, 1],
+                            "bounciness":0.0
+                        }
                     }
                 ]
             },
@@ -406,6 +526,15 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "bar"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "r3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [10, 1, 1],
+                            "bounciness":0.0
+                        }
                     }
                 ]
             },
@@ -418,6 +547,15 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "bar"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "r3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [10, 1, 1],
+                            "bounciness":0.0
+                        }
                     }
                 ]
             },
@@ -430,6 +568,15 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "wall"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "r3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [10, 2, 2],
+                            "bounciness":0.0
+                        }
                     }
                 ]
             },
@@ -462,6 +609,15 @@
                         "type": "Mesh Renderer",
                         "mesh": "FireExtinguisher",
                         "material": "fire-extinguisher"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "r3dType": "Static",
+                        "collider":{
+                            "type": "Box Collider",
+                            "halfExtents": [5, 5, 5],
+                            "bounciness":0.0
+                        }
                     }
                 ]
             },
