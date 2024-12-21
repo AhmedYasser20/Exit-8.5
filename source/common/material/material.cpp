@@ -74,4 +74,20 @@ namespace our {
         sampler = AssetLoader<Sampler>::get(data.value("sampler", ""));
     }
 
+    void LitMaterial::setup() const {
+        TexturedMaterial::setup();
+        shader->set("material.ambient", ambient);
+        shader->set("material.diffuse", diffuse);
+        shader->set("material.specular", specular);
+        shader->set("material.shininess", shininess);
+    }
+    void LitMaterial::deserialize(const nlohmann::json& data) {
+        TexturedMaterial::deserialize(data);
+        diffuse = data.value("diffuse", glm::vec3(0.7f, 0.7f, 0.7f));
+        specular= data.value("specular", glm::vec3(0.3f, 0.3f, 0.3f));
+        ambient = data.value("ambient", glm::vec3(0.1f, 0.1f, 0.1f));
+        shininess = data.value("shininess", 32.0f);
+        
+    }
+
 }

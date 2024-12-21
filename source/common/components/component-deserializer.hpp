@@ -25,7 +25,7 @@ namespace our {
             component = entity->addComponent<MovementComponent>();
         }else if(type == MeshRendererComponent::getID()){
             component = entity->addComponent<MeshRendererComponent>();
-        }else if(type == lightComponent::getID()){
+        }else if(type == lightComponent::getID()){ // light component ya beeh 
             component = entity->addComponent<lightComponent>();
         }
         else if (type == RigidBodyComponent::getID()){

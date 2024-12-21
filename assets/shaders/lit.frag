@@ -38,7 +38,7 @@ uniform Light lights[MAX_LIGHTS];
 uniform int num_lights;
 
 uniform Material material;
-uniform vec3 ambient_light; // Ambient Light Intensity ; separated since it is related to enviroment and not light source
+// uniform vec3 ambient_light; // Ambient Light Intensity ; separated since it is related to enviroment and not light source
 
 uniform sampler2D tex;
 uniform vec4 tint;
@@ -51,6 +51,8 @@ float lambertian(vec3 normal, vec3 light_direction){
 }
 // Phong Reflection Model
 float phong(vec3 reflected, vec3 view, float shininess){
+    view = normalize(view);
+    reflected = normalize(reflected);
     return pow(max(0.0, dot(reflected, view)), shininess);
 }
 
@@ -95,7 +97,8 @@ void main(){
     
     vec3 initial_color =  vec3(tint * fs_in.color * texture(tex, fs_in.tex_coord));
     
-    vec3 ambient = ambient_light * material.ambient;
+    // vec3 ambient = ambient_light * material.ambient;
+    vec3 ambient =  material.ambient;
 
     vec3 total_light = ambient; // adding ambient light to scene just one time 
     for(int i = 0; i < num_lights; i++) {

@@ -38,7 +38,7 @@
                 "door_arm": "assets/Room-Door/textures/Reflexion.jpg",
                 "monkey": "assets/textures/monkey.png",
                 "laptop": "assets/Notebook/textures/Lowpoly_Laptop_2.jpg",
-                "man": "assets/man/tex/rp_dennis_posed_004_dif.jpg", 
+                "man": "assets/man/tex/rp_dennis_posed_004_dif.jpg",
                 "ladder": "assets/scala//all.png",
                 "testing": "assets/textures/grass_ground_d.jpg"
             },
@@ -207,7 +207,7 @@
                         1,
                         1
                     ],
-                    "texture": "laptop",  //should be changed
+                    "texture": "laptop", //should be changed
                     "sampler": "default"
                 }
             }
@@ -221,7 +221,7 @@
             // "worldName": "MainWorld",
         },
         "world": [
-            {//Player
+            { //Player
                 "position": [
                     0,
                     0,
@@ -286,7 +286,7 @@
                     }
                 ]
             },
-            {//floor
+            { //floor
                 "position": [
                     0,
                     -1,
@@ -307,19 +307,10 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "wall"
-                    },
-                    {
-                        "type": "RigidBody",
-                        "rp3dType": "Static",
-                        "collider":{
-                            "type": "Box Collider",
-                            "halfExtents": [5, 15, 1],
-                            "bounciness":0.0
-                        }
                     }
                 ]
             },
-            {//wall
+            { //wall
                 "position": [
                     0,
                     1,
@@ -340,72 +331,6 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "wall"
-                    },
-                    {
-                        "type": "RigidBody",
-                        "rp3dType": "Static",
-                        "collider":{
-                            "type": "Box Collider",
-                            "halfExtents": [5, 2, 1],
-                            "bounciness":0.0
-                        }
-                    }
-                ]
-            },
-           {//image
-                "position": [
-                    0,
-                    1,
-                    -10
-                ],
-                "rotation": [
-                    0,
-                    0,
-                    0
-                ],
-                "scale": [
-                    1,
-                    1,
-                    1
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "grass"
-                    }
-                ]
-            },
-            {//back wall 
-                "position": [
-                    0,
-                    1,
-                    15
-                ],
-                "rotation": [
-                    0,
-                    0,
-                    0
-                ],
-                "scale": [
-                    5,
-                    2,
-                    1
-                ],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "wall"
-                    },
-                    {
-                        "type": "RigidBody",
-                        "rp3dType": "Static",
-                        "collider":{
-                            "type": "Box Collider",
-                            "halfExtents": [5, 2, 1],
-                            "bounciness":0.0
-                        }
                     }
                 ]
             },
@@ -430,19 +355,10 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "wall"
-                    },
-                    {
-                        "type": "RigidBody",
-                        "rp3dType": "Static",
-                        "collider":{
-                            "type": "Box Collider",
-                            "halfExtents": [15, 1, 1],
-                            "bounciness":0.0
-                        }
                     }
                 ]
             },
-            {//side wall
+            { //side wall
                 "position": [
                     -5,
                     1,
@@ -507,7 +423,7 @@
                     }
                 ]
             },
-            {//enemy
+            { //enemy
                 "position": [
                     1,
                     -1,
@@ -536,67 +452,253 @@
                             0,
                             0.1
                         ]
-                    // },
-                    // {
-                    //     "type": "RigidBody",
-                    //     "r3dType": "Dynamic", // Satic->floor, Kinematic->moving platforms, Dynamic->player  // default is Static
-                    //     "enableGravity": false, // default is false
-                    //     "allowedToSleep": false, // default is false: keep as false for player or moving object, true for static objects
-                    //     "rotaionAxis": [0,0,0], //default [1,1,1]
-                    //     "motionAxis": [1,1,1], //default [1,1,1]
-                    //     "collider":{
-                    //         "type": "Box Collider",
-                    //         "halfExtents": [0.05, 0.05, 0.05],
-                    //         // "type": "Sphere Collider",
-                    //         // "radius": 0.5,
-                    //         // "type": "Capsule Collider",
-                    //         // "radius": 0.5,
-                    //         // "height": 1.0,
-                            
-                    //         // for material
-                    //         "bounciness":0.0,
-                    //         "friction": 1.0,
-                            
-                    //         // for trigger
-                    //         "isTrigger": false // default is false
-                    //     }
                     }
                 ]
             },
-            // {
-            //     "position": [
-            //         -6.7,
-            //         -4.75,
-            //         12
-            //     ],
-            //     "rotation": [
-            //         0,
-            //         90,
-            //         0
-            //     ],
-            //     "scale": [
-            //         0.3,
-            //         0.3,
-            //         0.1
-            //     ],
-            //     "components": [
-            //         {
-            //             "type": "Mesh Renderer",
-            //             "mesh": "ladder",
-            //             "material": "ladder"
-            //         },
-            //         {
-            //             "type": "RigidBody",
-            //             "rp3dType": "Static",
-            //             "collider":{
-            //                 "type": "Box Collider",
-            //                 "halfExtents": [3, 1, 1],
-            //                 "bounciness":0.0
-            //             }
-            //         }
-            //     ]
-            // },
-            {//sky (ceiling)
+            {
+                "position": [
+                    0,
+                    -1,
+                    -5
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "ladder",
+                        "material": "ladder"
+                    }
+                ]
+            },
+            { //sky (ceiling)
+                "position": [
+                    0,
+                    3,
+                    0
+                ],
+                "rotation": [
+                    90,
+                    0,
+                    0
+                ],
+                "scale": [
+                    5,
+                    10,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "wall"
+                    }
+                ]
+            }
+        ],
+        "world2": [
+            { //Player
+                "position": [
+                    0,
+                    0,
+                    10
+                ],
+                "components": [
+                    {
+                        "type": "Camera"
+                    },
+                    {
+                        "type": "Free Camera Controller"
+                    }
+                ],
+                "children": [
+                    {
+                        "position": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "rotation": [
+                            45,
+                            45,
+                            0
+                        ],
+                        "scale": [
+                            0.1,
+                            0.1,
+                            1.0
+                        ],
+                        "components": [
+                            {
+                                "type": "Mesh Renderer",
+                                "mesh": "cube",
+                                "material": "metal"
+                            }
+                        ]
+                    }
+                ]
+            },
+            { //floor
+                "position": [
+                    0,
+                    -1,
+                    0
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "scale": [
+                    5,
+                    10,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "wall"
+                    }
+                ]
+            },
+            { //wall
+                "position": [
+                    0,
+                    1,
+                    -10
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    5,
+                    2,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "wall"
+                    }
+                ]
+            },
+            { //side wall
+                "position": [
+                    5,
+                    1,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    90,
+                    0
+                ],
+                "scale": [
+                    10,
+                    2,
+                    2
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "wall"
+                    }
+                ]
+            },
+            { //side wall
+                "position": [
+                    -5,
+                    1,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    90,
+                    0
+                ],
+                "scale": [
+                    10,
+                    2,
+                    2
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "wall"
+                    }
+                ]
+            },
+            {
+                "position": [
+                    0,
+                    -0.9,
+                    -8
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "laptop",
+                        "material": "monkey"
+                    },
+                    {
+                        "type": "Movement",
+                        "angularVelocity": [
+                            0,
+                            20,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {
+                "position": [
+                    0,
+                    -1,
+                    -5
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "ladder",
+                        "material": "ladder"
+                    }
+                ]
+            },
+            { //sky (ceiling)
                 "position": [
                     0,
                     3,

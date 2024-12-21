@@ -56,7 +56,7 @@ class Menustate: public our::State {
         menuMaterial->shader->attach("assets/shaders/textured.frag", GL_FRAGMENT_SHADER);
         menuMaterial->shader->link();
         // Then we load the menu texture
-        menuMaterial->texture = our::texture_utils::loadImage("assets/textures/menu.png");
+        menuMaterial->texture = our::texture_utils::loadImage("assets/textures/cufe-spooky-menu.png");
         // Initially, the menu material will be black, then it will fade in
         menuMaterial->tint = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
 
@@ -68,11 +68,11 @@ class Menustate: public our::State {
         highlightMaterial->shader->attach("assets/shaders/tinted.frag", GL_FRAGMENT_SHADER);
         highlightMaterial->shader->link();
         // The tint is white since we will subtract the background color from it to create a negative effect.
-        highlightMaterial->tint = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+        highlightMaterial->tint = glm::vec4(0.5f, 0.5f, 0.5, 0.3f);
         // To create a negative effect, we enable blending, set the equation to be subtract,
         // and set the factors to be one for both the source and the destination. 
         highlightMaterial->pipelineState.blending.enabled = true;
-        highlightMaterial->pipelineState.blending.equation = GL_FUNC_SUBTRACT;
+        highlightMaterial->pipelineState.blending.equation = GL_FUNC_REVERSE_SUBTRACT;
         highlightMaterial->pipelineState.blending.sourceFactor = GL_ONE;
         highlightMaterial->pipelineState.blending.destinationFactor = GL_ONE;
 
@@ -99,11 +99,11 @@ class Menustate: public our::State {
         // - The argument list () which is the arguments that the lambda should receive when it is called.
         //      We leave it empty since button actions receive no input.
         // - The body {} which contains the code to be executed. 
-        buttons[0].position = {830.0f, 607.0f};
+        buttons[0].position = {830.0f, 589.0f};
         buttons[0].size = {400.0f, 33.0f};
         buttons[0].action = [this](){this->getApp()->changeState("play");};
 
-        buttons[1].position = {830.0f, 644.0f};
+        buttons[1].position = {830.0f, 630.0f};
         buttons[1].size = {400.0f, 33.0f};
         buttons[1].action = [this](){this->getApp()->close();};
     }
