@@ -500,7 +500,7 @@
                         "rp3dType": "Static",
                         "collider":{
                             "type": "Box Collider",
-                            "halfExtents": [10, 1, 1],
+                            "halfExtents": [10, 4, 2],
                             "bounciness":0.0
                         }
                     }
