@@ -7,7 +7,8 @@
 #include <systems/free-camera-controller.hpp>
 #include <systems/movement.hpp>
 #include <asset-loader.hpp>
-
+#include<components/light.hpp>
+#include<components/camera.hpp>
 // This state shows how to use the ECS framework and deserialization.
 class Playstate : public our::State
 {
@@ -56,6 +57,18 @@ class Playstate : public our::State
         {
             // If the escape  key is pressed in this frame, go to the play state
             getApp()->changeState("level1");
+        }
+        // Torch 
+        if(keyboard.justPressed(GLFW_KEY_F)) {
+        // Find camera entity and its light component
+            for(auto entity : world.getEntities()) {
+                if(auto camera = entity->getComponent<our::CameraComponent>()) {
+                    if(auto light = entity->getComponent<our::lightComponent>()) {
+                        light->toggle();
+                    }
+                    break;
+                }
+            }
         }
     }
 
