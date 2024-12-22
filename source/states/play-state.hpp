@@ -70,6 +70,10 @@ class Playstate : public our::State
                 }
             }
         }
+        if(keyboard.justPressed(GLFW_KEY_ESCAPE)) {
+            // If the escape key is pressed in this frame, exit the game
+            getApp()->changeState("menu");
+        }
     }
 
     void onDestroy() override
