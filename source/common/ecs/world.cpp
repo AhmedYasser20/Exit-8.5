@@ -1,6 +1,8 @@
 #include "world.hpp"
 #include <json/json.hpp>
 #include "../deserialize-utils.hpp"
+#include "components/rigid.hpp"
+#include "components/collision-listener.hpp"
 
 namespace our {
 
@@ -14,6 +16,21 @@ namespace our {
             Entity * newEntity= add(); 
             newEntity->parent = parent; // if parent is null , idicates entity parent is root "world"
             newEntity->deserialize(entityData);
+            if(auto* rigidBody = newEntity->getComponent<our::RigidBodyComponent>()) {
+            // Store the entity pointer in the RigidBody's user data for collision callbacks
+            rigidBody->getBody()->setUserData(newEntity);
+            
+            // If this is a door, mark it for collision detection
+            if(entityData.contains("name")) {
+                std::string name = entityData["name"].get<std::string>();
+                if(name == "green_door" || name == "red_door") {
+                    // Store the door reference if needed
+                    std::cout << "green_door or red_door found" << std::endl;
+                    doors[name] = newEntity;
+                }
+            }
+            }
+            
             if(entityData.contains("children")){
                 //TODO: (Req 8) Recursively call this world's "deserialize" using the children data
                 // and the current entity as the parent
@@ -22,7 +39,7 @@ namespace our {
         }
     }
 
-        void World::deserialize_physics(const nlohmann::json& data){
+    void World::deserialize_physics(const nlohmann::json& data){
         if(!data.is_object()) return;
         rp3d::PhysicsWorld::WorldSettings settings;
         glm::vec3 gravity(settings.gravity.x, settings.gravity.y, settings.gravity.z);
@@ -31,6 +48,7 @@ namespace our {
         settings.worldName = data.value("worldName", settings.worldName);
         // TODO: Support world settings like gravity and world name
         this->physicsWorld = this->physicsCommon.createPhysicsWorld(settings);
+        this->physicsWorld->setEventListener(new CollisionEventListener(*this));
     }
 
 }

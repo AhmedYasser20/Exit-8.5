@@ -94,8 +94,8 @@ namespace our
         GLint validateAndGetUniform(const std::string &uniform) {
             GLint location = getUniformLocation(uniform);
             if(location == -1) {
-                std::cout << "Warning: Uniform '" << uniform << "' not found in shader program " 
-                        << program << std::endl;
+                // std::cout << "Warning: Uniform '" << uniform << "' not found in shader program " 
+                        // << program << std::endl;
             }
             return location;
         }

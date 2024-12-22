@@ -12,6 +12,7 @@ namespace our {
                                                       // when deleteMarkedEntities is called
         rp3d::PhysicsCommon physicsCommon; // Factory pattern for creating physics world objects , logging, and memory management
         rp3d::PhysicsWorld* physicsWorld = nullptr; // This is the physics world that will be used for physics simulation
+        std::unordered_map<std::string, Entity*> doors;
     public:
 
         World() = default;

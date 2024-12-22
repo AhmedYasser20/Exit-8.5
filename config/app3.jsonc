@@ -299,6 +299,7 @@
         "world": [
             {//Player
                 "position": [0, 1, 7],
+                "name": "player",
                 "components": [
                     {
                         "type": "Camera"
@@ -308,6 +309,7 @@
                     },
                     {
                         "type": "RigidBody",
+                        "isPlayer": true, 
                         "r3dType": "Dynamic", // Satic->floor, Kinematic->moving platforms, Dynamic->player  // default is Static
                         "enableGravity": true, // default is false
                         "allowedToSleep": false, // default is false: keep as false for player or moving object, true for static objects
@@ -478,6 +480,7 @@
                 "position": [4.90, 0.5, 0],
                 "rotation": [0, -90, 0],
                 "scale": [0.7, 1.5, 0.7],
+                "name":"green_door",
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -541,6 +544,7 @@
                 "position": [-4.9, 0.5, 0],
                 "rotation": [0, 90, 0],
                 "scale": [0.7, 1.5, 0.7],
+                "name":"red_door",
                 "components": [
                     {
                         "type": "Mesh Renderer",

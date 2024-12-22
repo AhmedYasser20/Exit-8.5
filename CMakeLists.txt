@@ -87,6 +87,7 @@ set(COMMON_SOURCES
         source/common/components/collisions.cpp
         source/common/components/rigid.hpp
         source/common/components/rigid.cpp        
+        source/common/components/collision-listener.hpp
 
         source/common/systems/forward-renderer.hpp
         source/common/systems/forward-renderer.cpp

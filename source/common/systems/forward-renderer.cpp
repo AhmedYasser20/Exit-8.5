@@ -295,7 +295,7 @@ namespace our
                     else 
                         opaqueCommand.material->shader->set(color, glm::vec3(0.0f));                        
                     
-                    std::cout << (size_t)light->mLightType <<std::endl; 
+                    // std::cout << (size_t)light->mLightType <<std::endl; 
                     if(light->mLightType ==  lightComponent::LightType::Directional){
                         opaqueCommand.material->shader->set(LightType, 0);
                         opaqueCommand.material->shader->set(direction, light->direction);

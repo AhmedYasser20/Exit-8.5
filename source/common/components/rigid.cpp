@@ -41,6 +41,7 @@ namespace our {
         if(!data.is_object()) return;
         r3d::PhysicsCommon& pCommon = this->getOwner()->getWorld()->getPhysicsCommon();
         std::string colliderType = data.value("type", "");
+        this->isPlayer = data.value("isPlayer", false);
         if(colliderType == "Box Collider") {
             // halfExtents
             const glm::vec3 hE = data.value("halfExtents", glm::vec3(1.0f));

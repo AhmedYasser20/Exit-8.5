@@ -112,7 +112,7 @@ void main() {
     vec3 ambient = albedo * ao;
     
     // Initialize total light with ambient
-    vec3 total_light = ambient*0.3;
+    vec3 total_light = ambient*0.2;
     
     // Add contribution from all lights
     for(int i = 0; i < num_lights; i++) {
