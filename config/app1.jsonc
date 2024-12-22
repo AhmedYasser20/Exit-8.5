@@ -53,13 +53,9 @@
                 "floor-roughness": "assets/textures/floor/floor-roughness.png",
                 "button1": "assets/Emergency Stop/Nood_Stop_AI.jpg",
                 "glass": "assets/textures/glass.png",
-<<<<<<< HEAD
-                "torch": "assets/Images/2.png"
-=======
                 "door-ao": "assets/textures/doors/door-ao3.png",
                 "door-specular":"assets/textures/doors/door-specular3.png",
                 "door-roughness":"assets/textures/doors/door-roughness3.png"
->>>>>>> 0b9b67445cd0d135ea9aae197d9329af66569a9d
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
@@ -69,9 +65,9 @@
                 "doormesh": "assets/Room-Door/Door_Component_BI3.obj",
                 "laptop": "assets/Notebook/Lowpoly_Notebook_2.obj",
                 "FireExtinguisher": "assets/FireExtinguisher/fire extinguisher.obj",
+                "Gun": "assets/M4A1/M4A1.obj",
                 "chair": "assets/models/Chair.obj",
-                "button1": "assets/Emergency Stop/Emergency_Stop.obj",
-                "torch": "assets/models/flashlight.obj"
+                "button1": "assets/Emergency Stop/Emergency_Stop.obj"
             },
             "samplers": {
                 "default": {},
@@ -291,26 +287,6 @@
                     ],
                     "texture": "button1",
                     "sampler": "default"
-                },
-                "torch": {
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling": {
-                            "enabled": false
-                        },
-                        "depthTesting": {
-                            "enabled": true
-                        }
-                    },
-                    "tint": [
-                        1,
-                        1,
-                        1,
-                        1
-                    ],
-                    "texture": "torch",
-                    "sampler": "default"
                 }
             }
         },
@@ -355,13 +331,13 @@
                 "children": [
                     {
                         "position": [1, -1, -1],
-                        "rotation": [0, -90, 0],
-                        "scale": [0.005, 0.005, 0.005],
+                        "rotation": [45, 45, 0],
+                        "scale": [0.09, 0.09, 0.09],
                         "components": [
                             {
                                 "type": "Mesh Renderer",
-                                "mesh": "torch",
-                                "material": "torch"
+                                "mesh": "cube",
+                                "material": "metal"
                             }
                         ]
                     }
