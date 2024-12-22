@@ -55,7 +55,8 @@
                 "glass": "assets/textures/glass.png",
                 "door-ao": "assets/textures/doors/door-ao3.png",
                 "door-specular":"assets/textures/doors/door-specular3.png",
-                "door-roughness":"assets/textures/doors/door-roughness3.png"
+                "door-roughness":"assets/textures/doors/door-roughness3.png",
+                "torch": "assets/textures/2.png"
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
@@ -67,7 +68,8 @@
                 "FireExtinguisher": "assets/FireExtinguisher/fire extinguisher.obj",
                 "Gun": "assets/M4A1/M4A1.obj",
                 "chair": "assets/models/Chair.obj",
-                "button1": "assets/Emergency Stop/Emergency_Stop.obj"
+                "button1": "assets/Emergency Stop/Emergency_Stop.obj",
+                "torch": "assets/models/flashlight.obj"
             },
             "samplers": {
                 "default": {},
@@ -334,12 +336,12 @@
                 "children": [
                     {
                         "position": [1, -1, -1],
-                        "rotation": [45, 45, 0],
-                        "scale": [0.09, 0.09, 0.09],
+                        "rotation": [0, -90, 0],
+                        "scale": [0.008, 0.008, 0.008],
                         "components": [
                             {
                                 "type": "Mesh Renderer",
-                                "mesh": "cube",
+                                "mesh": "torch",
                                 "material": "metal"
                             }
                         ]
