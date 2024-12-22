@@ -28,10 +28,14 @@
                 "textured": {
                     "vs": "assets/shaders/textured.vert",
                     "fs": "assets/shaders/textured.frag"
+                },
+                "lit": {
+                    "vs": "assets/shaders/lit.vert",
+                    "fs": "assets/shaders/lit.frag"
                 }
             },
             "textures": {
-                "floor": "assets/textures/floor.jpg",
+                "floor": "assets/textures/floor/floor-albedo.png",
                 "wall": "assets/textures/wall.jpg",
                 "sky": "assets/textures/sky.jpg",
                 "door": "assets/textures/closed.jpg",
@@ -39,7 +43,14 @@
                 "laptop": "assets/Notebook/textures/Lowpoly_Laptop_2.jpg",
                 "green-bar": "assets/textures/green-bar.png",
                 "fire-extinguisher": "assets/FireExtinguisher/FireExtinguisher_D.png",
-                "chair": "assets/textures/Chair-1.jpg",
+                "chair": "assets/textures/Chair-1.jpg",,
+                "brick-wall": "assets/textures/brick-wall/albedoMap.jpg",
+                "brick-wall-ao": "assets/textures/brick-wall/AmbientOcclusionMap.png", 
+                "brick-wall-specular": "assets/textures/brick-wall/SpecularMap.png", 
+                "brick-wall-roughness": "assets/textures/brick-wall/DisplacementMap.png",
+                "floor-ao": "assets/textures/floor/floor-AO.png", 
+                "floor-specular": "assets/textures/floor/floor-specular.png", 
+                "floor-roughness": "assets/textures/floor/floor-roughness.png",
                 "button1": "assets/Emergency Stop/Nood_Stop_AI.jpg"
             },
             "meshes": {
@@ -86,8 +97,8 @@
                     ]
                 },
                 "wall": {
-                    "type": "textured",
-                    "shader": "textured",
+                    "type": "lit",
+                    "shader": "lit",
                     "pipelineState": {
                         "faceCulling": {
                             "enabled": false
@@ -102,12 +113,16 @@
                         1,
                         1
                     ],
-                    "texture": "wall",
-                    "sampler": "default"
+                    "texture": "brick-wall",
+                    "sampler": "repeat",
+                    "ambient_occlusion": "brick-wall-ao",
+                    "specular": "brick-wall-specular",
+                    "roughness":"brick-wall-roughness"
+
                 },
                 "floor": {
-                    "type": "textured",
-                    "shader": "textured",
+                    "type": "lit",
+                    "shader": "lit",
                     "pipelineState": {
                         "faceCulling": {
                             "enabled": false
@@ -123,7 +138,11 @@
                         1
                     ],
                     "texture": "floor",
-                    "sampler": "repeat"
+                    "sampler": "repeat",
+                    "ambient_occlusion": "floor-ao",
+                    "specular": "floor-specular",
+                    "roughness":"floor-roughness"
+
                 },
                 "sky": {
                     "type": "textured",
@@ -274,6 +293,15 @@
                             "friction": 1.0,                            
                             "isTrigger": false // default is false
                         }
+                    },
+                    {   // torch light 
+                        "type": "Light",
+                        "lightType": "spot",
+                        "direction":[0, 0 ,-2 ], 
+                        "color": [2, 2,2],
+                        "innerConeAngle": 10.0,
+                        "outerConeAngle": 30.0,
+                        "attenuation": [1, 0.014, 0.0007]
                     }
                 ],
                 "children": [
@@ -335,7 +363,7 @@
             },
             {//back wall
                 "position": [0, 1, 10],
-                "rotation": [0, 0, 0],
+                "rotation": [180, 0, 0],
                 "scale": [5, 2, 1],
                 "components": [
                     {
@@ -398,7 +426,7 @@
             },
             {//right side wall
                 "position": [5, 1, 0],
-                "rotation": [0, 90, 0],
+                "rotation": [0, -90, 0],
                 "scale": [10, 2, 2],
                 "components": [
                     {
@@ -680,7 +708,63 @@
                         "material": "wall"
                     }
                 ]
-            }
+            },
+            { // light spot
+            "position": [
+                4,
+                1,
+                -9
+            ],
+            "rotation": [
+                0,  
+                0,
+                0
+            ],
+            "scale": [
+                1,
+                1,
+                1
+            ],
+            "components": [
+                {
+                    "type": "Light",
+                    "lightType": "point",
+                    "direction":[0, -1 ,0.5 ], 
+                    "color": [0.5, 0.5,0.5],
+                    "innerConeAngle": 30.0,
+                    "outerConeAngle": 60.0,
+                    "attenuation": [1, 0.014, 0.0007]
+                }
+            ]
+        },
+        { // light spot
+            "position": [
+                0,
+                1,
+                0
+            ],
+            "rotation": [
+                0,  
+                0,
+                0
+            ],
+            "scale": [
+                1,
+                1,
+                1
+            ],
+            "components": [
+                {
+                    "type": "Light",
+                    "lightType": "spot",
+                    "direction":[-4.9, -0.5 ,0 ], 
+                    "color": [1, 1,1],
+                    "innerConeAngle": 10.0,
+                    "outerConeAngle": 60.0,
+                    "attenuation": [1, 0.014, 0.0007]
+                }
+            ]
+        }
         ]
     }
 }

@@ -290,7 +290,11 @@ namespace our
                     std::string attenuation = "lights["+num+"].attenuation";
                     std::string cone_angles = "lights["+num+"].cone_angles";
                     
-                    opaqueCommand.material->shader->set(color, light->mLightColor);
+                    if(light->isEnabled)
+                        opaqueCommand.material->shader->set(color, light->mLightColor);
+                    else 
+                        opaqueCommand.material->shader->set(color, glm::vec3(0.0f));                        
+                    
                     std::cout << (size_t)light->mLightType <<std::endl; 
                     if(light->mLightType ==  lightComponent::LightType::Directional){
                         opaqueCommand.material->shader->set(LightType, 0);
@@ -305,8 +309,26 @@ namespace our
 
                     if(light->mLightType ==  lightComponent::LightType::Spot ){
                         opaqueCommand.material->shader->set(LightType, 2);
-                        opaqueCommand.material->shader->set(position, glm::vec3(light->getOwner()->getLocalToWorldMatrix()*glm::vec4(0.0f,0.0f,0.0f,1.0f)));
-                        opaqueCommand.material->shader->set(direction, light->direction);
+                        opaqueCommand.material->shader->set(position, glm::vec3(light->getOwner()->getLocalToWorldMatrix()*glm::vec4(0.0f,0.0f,0.0f,1.0f)));                        
+                        // Check if this light is attached to camera
+                        bool isAttachedToCamera = false;
+                        Entity* parent = light->getOwner();
+                        while(parent) {
+                            if(parent->getComponent<CameraComponent>()) {
+                                isAttachedToCamera = true;
+                                break;
+                            }
+                            parent = parent->parent;
+                        }
+
+                        if(isAttachedToCamera) {
+                            // If light is attached to camera, use camera's forward direction
+                            glm::vec3 cameraForward = center - eye; // You already calculated this
+                            opaqueCommand.material->shader->set(direction, cameraForward);
+                        } else {
+                            // For non-camera lights, use their transform
+                            opaqueCommand.material->shader->set(direction, light->direction);
+                        }                        
                         opaqueCommand.material->shader->set(attenuation, light->attenuation);
                         opaqueCommand.material->shader->set(cone_angles, glm::vec2(glm::radians(light->innerConeAngle), glm::radians(light->outerConeAngle)));
 

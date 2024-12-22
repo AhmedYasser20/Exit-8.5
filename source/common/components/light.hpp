@@ -20,7 +20,11 @@ namespace our
             Point,
             Spot
         } mLightType = LightType::Directional;
+        bool isEnabled = true;  // New member to track light state
 
+        void toggle() {
+            this->isEnabled = !isEnabled;
+        }
         // spot light properties, angle of the light cone
         float innerConeAngle = glm::radians(30.0f);
         // spot light properties, falloff of the light cone

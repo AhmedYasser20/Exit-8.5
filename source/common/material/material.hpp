@@ -45,7 +45,7 @@ namespace our {
     // An example where this material can be used is when the object has a texture
     class TexturedMaterial : public TintedMaterial {
     public:
-        Texture2D* texture;
+        Texture2D* texture; // albedo 
         Sampler* sampler;
         float alphaThreshold;
 
@@ -55,10 +55,11 @@ namespace our {
     //class for lit material
     class LitMaterial : public TexturedMaterial {
     public:
-        glm::vec3 ambient;
-        glm::vec3 diffuse;
-        glm::vec3 specular;
-        float shininess; 
+        Texture2D * ambient_occlusion;
+        // Texture2D * albedo; albedo in this case is the original texture which supposed to be read my TexuredMaterial class 
+        Texture2D * specular;
+        Texture2D * roughness;
+        // float shininess; 
         void setup() const override;
         void deserialize(const nlohmann::json& data) override;
     };
