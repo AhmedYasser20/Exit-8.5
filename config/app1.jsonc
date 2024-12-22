@@ -43,7 +43,7 @@
                 "laptop": "assets/Notebook/textures/Lowpoly_Laptop_2.jpg",
                 "green-bar": "assets/textures/green-bar.png",
                 "fire-extinguisher": "assets/FireExtinguisher/FireExtinguisher_D.png",
-                "chair": "assets/textures/Chair-1.jpg",,
+                "chair": "assets/textures/Chair-1.jpg",
                 "brick-wall": "assets/textures/brick-wall/albedoMap.jpg",
                 "brick-wall-ao": "assets/textures/brick-wall/AmbientOcclusionMap.png", 
                 "brick-wall-specular": "assets/textures/brick-wall/SpecularMap.png", 
@@ -51,7 +51,8 @@
                 "floor-ao": "assets/textures/floor/floor-AO.png", 
                 "floor-specular": "assets/textures/floor/floor-specular.png", 
                 "floor-roughness": "assets/textures/floor/floor-roughness.png",
-                "button1": "assets/Emergency Stop/Nood_Stop_AI.jpg"
+                "button1": "assets/Emergency Stop/Nood_Stop_AI.jpg",
+                "glass": "assets/textures/glass.png"
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
@@ -202,6 +203,26 @@
                         1
                     ],
                     "texture": "door",
+                    "sampler": "default"
+                },
+                "door-glass": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        0.5
+                    ],
+                    "texture": "glass",
                     "sampler": "default"
                 },
                 "bar": {
@@ -463,6 +484,18 @@
                             "halfExtents": [1, 2, 1],
                             "bounciness":0.0
                         }
+                    }
+                ]
+            },
+            {//right door glass 1
+                "position": [4.85, 1, 0],
+                "rotation": [0, 90, 0],
+                "scale": [0.4, 0.6, 0.5],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "door-glass"
                     }
                 ]
             },
