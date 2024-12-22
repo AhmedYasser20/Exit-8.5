@@ -51,12 +51,16 @@
                 "floor-ao": "assets/textures/floor/floor-AO.png", 
                 "floor-specular": "assets/textures/floor/floor-specular.png", 
                 "floor-roughness": "assets/textures/floor/floor-roughness.png",
-                "button1": "assets/Emergency Stop/Nood_Stop_AI.jpg",
                 "glass": "assets/textures/glass.png",
                 "door-ao": "assets/textures/doors/door-ao3.png",
                 "door-specular":"assets/textures/doors/door-specular3.png",
                 "door-roughness":"assets/textures/doors/door-roughness3.png",
-                "torch": "assets/textures/2.png"
+                "torch": "assets/textures/2.png",
+                "Image1": "assets/textures/Red1.jpg",
+                "Image2": "assets/textures/Red2.jpg",
+                "Image3": "assets/textures/Red3.jpg",
+                "Image4": "assets/textures/Red4.jpg",
+                "Image5": "assets/textures/Image5.jpg"
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
@@ -68,7 +72,6 @@
                 "FireExtinguisher": "assets/FireExtinguisher/fire extinguisher.obj",
                 "Gun": "assets/M4A1/M4A1.obj",
                 "chair": "assets/models/Chair.obj",
-                "button1": "assets/Emergency Stop/Emergency_Stop.obj",
                 "torch": "assets/models/flashlight.obj"
             },
             "samplers": {
@@ -273,7 +276,7 @@
                     "texture": "fire-extinguisher",
                     "sampler": "default"
                 },
-                "Button1": {
+                "img1": {
                     "type": "textured",
                     "shader": "textured",
                     "pipelineState": {
@@ -290,7 +293,67 @@
                         1,
                         1
                     ],
-                    "texture": "button1",
+                    "texture": "Image1",
+                    "sampler": "default"
+                },
+                "img2": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "Image2",
+                    "sampler": "default"
+                },
+                "img3": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "Image3",
+                    "sampler": "default"
+                },
+                "img4": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "Image4",
                     "sampler": "default"
                 }
             }
@@ -337,7 +400,7 @@
                     {
                         "position": [1, -1, -0.5],
                         "rotation": [0, -90, 0],
-                        "scale": [0.008, 0.008, 0.008],
+                        "scale": [0.005, 0.005, 0.005],
                         "components": [
                             {
                                 "type": "Mesh Renderer",
@@ -496,7 +559,7 @@
                 ]
             },
             {//right door 2
-                "position": [4.9, 0.5, 6],
+                "position": [4.9, 0.5, 9],
                 "rotation": [0, -90, 0],
                 "scale": [0.7, 1.5, 0.7],
                 "components": [
@@ -517,7 +580,7 @@
                 ]
             },
             {//right door 3
-                "position": [4.9, 0.5, -6],
+                "position": [4.9, 0.5, -9],
                 "rotation": [0, -90, 0],
                 "scale": [0.7, 1.5, 0.7],
                 "components": [
@@ -559,7 +622,7 @@
                 ]
             },
             {//left door 2
-                "position": [-4.9, 0.5, 6],
+                "position": [-4.9, 0.5, 9],
                 "rotation": [0, 90, 0],
                 "scale": [0.7, 1.5, 0.7],
                 "components": [
@@ -580,7 +643,7 @@
                 ]
             },
             {//left door 3
-                "position": [-4.9, 0.5, -6],
+                "position": [-4.9, 0.5, -9],
                 "rotation": [0, 90, 0],
                 "scale": [0.7, 1.5, 0.7],
                 "components": [
@@ -705,27 +768,52 @@
                     }
                 ]
             },
-            // {//wrong button
-            //     "position": [0, 0, 0],
-            //     "rotation": [0, 0, -90],
-            //     "scale": [0.002, 0.002, 0.002],
-            //     "components": [
-            //         {
-            //             "type": "Mesh Renderer",
-            //             "mesh": "button1",
-            //             "material": "Button1"
-            //         },
-            //         {
-            //             "type": "RigidBody",
-            //             "r3dType": "Static",
-            //             "collider":{
-            //                 "type": "Box Collider",
-            //                 "halfExtents": [0.05, 0.05, 0.05],
-            //                 "bounciness":0.0
-            //             }
-            //         }
-            //     ]
-            // },
+            {//fire-extinguisher
+                "position": [-4, -1, -14],
+                "rotation": [0, 0, 0],
+                "scale": [5, 5, 5],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "FireExtinguisher",
+                        "material": "fire-extinguisher"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "r3dType": "Static",
+                        "collider":{
+                            "type": "Capsule Collider",
+                            "radius": 0.5,
+                            "height": 5.0,
+                            "bounciness":0.0
+                        }
+                    }
+                ]
+            },
+            {//First Image
+                "position": [0, 1.5, -14.90],
+                "rotation": [0, 0, 0],
+                "scale": [0.7, 0.7, 0.7],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "img1"
+                    }
+                ]
+            },
+            {//First Image
+                "position": [-4.9, 1.5, -6],
+                "rotation": [0, 90, 0],
+                "scale": [0.7, 0.7, 0.7],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "img1"
+                    }
+                ]
+            },
             {//sky (ceiling)
                 "position": [0, 4, 0],
                 "rotation": [90, 0, 0],
