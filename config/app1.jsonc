@@ -38,22 +38,28 @@
                 "floor": "assets/textures/floor/floor-albedo.png",
                 "wall": "assets/textures/wall.jpg",
                 "sky": "assets/textures/sky.jpg",
-                "door": "assets/textures/closed.jpg",
+                "door": "assets/textures/doors/door-albedo3.png",
                 "monkey": "assets/textures/monkey.png",
                 "laptop": "assets/Notebook/textures/Lowpoly_Laptop_2.jpg",
                 "green-bar": "assets/textures/green-bar.png",
                 "fire-extinguisher": "assets/FireExtinguisher/FireExtinguisher_D.png",
                 "chair": "assets/textures/Chair-1.jpg",
-                "brick-wall": "assets/textures/brick-wall/albedoMap.jpg",
-                "brick-wall-ao": "assets/textures/brick-wall/AmbientOcclusionMap.png", 
-                "brick-wall-specular": "assets/textures/brick-wall/SpecularMap.png", 
-                "brick-wall-roughness": "assets/textures/brick-wall/DisplacementMap.png",
+                "brick-wall": "assets/textures/brick-wall/albedoMap2.png",
+                "brick-wall-ao": "assets/textures/brick-wall/AmbientOcclusionMap2.png", 
+                "brick-wall-specular": "assets/textures/brick-wall/SpecularMap2.png", 
+                "brick-wall-roughness": "assets/textures/brick-wall/RoughnessMap2.png",
                 "floor-ao": "assets/textures/floor/floor-AO.png", 
                 "floor-specular": "assets/textures/floor/floor-specular.png", 
                 "floor-roughness": "assets/textures/floor/floor-roughness.png",
                 "button1": "assets/Emergency Stop/Nood_Stop_AI.jpg",
                 "glass": "assets/textures/glass.png",
+<<<<<<< HEAD
                 "torch": "assets/Images/2.png"
+=======
+                "door-ao": "assets/textures/doors/door-ao3.png",
+                "door-specular":"assets/textures/doors/door-specular3.png",
+                "door-roughness":"assets/textures/doors/door-roughness3.png"
+>>>>>>> 0b9b67445cd0d135ea9aae197d9329af66569a9d
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
@@ -73,10 +79,10 @@
                     "MAG_FILTER": "GL_NEAREST"
                 },
                 "repeat": {
-                    "MAG_FILTER": "GL_NEAREST",
-                    "MIN_FILTER": "GL_NEAREST",
-                    "WRAP_S": "GL_REPEAT",
-                    "WRAP_T": "GL_REPEAT"
+                    "MAG_FILTER": "GL_LINEAR",
+                    "MIN_FILTER": "GL_LINEAR_MIPMAP_NEAREST",
+                    "WRAP_S": "GL_MIRRORED_REPEAT",
+                    "WRAP_T": "GL_MIRRORED_REPEAT"
                 }
             },
             "materials": {
@@ -187,8 +193,8 @@
                     "sampler": "default"
                 },
                 "door": {
-                    "type": "textured",
-                    "shader": "textured",
+                    "type": "lit",
+                    "shader": "lit",
                     "pipelineState": {
                         "faceCulling": {
                             "enabled": false
@@ -489,7 +495,7 @@
             },
             {//right door 1
                 "position": [4.90, 0.5, 0],
-                "rotation": [0, 90, 0],
+                "rotation": [0, -90, 0],
                 "scale": [0.7, 1.5, 0.7],
                 "components": [
                     {
@@ -522,7 +528,7 @@
             },
             {//right door 2
                 "position": [4.9, 0.5, 6],
-                "rotation": [0, 90, 0],
+                "rotation": [0, -90, 0],
                 "scale": [0.7, 1.5, 0.7],
                 "components": [
                     {
@@ -543,7 +549,7 @@
             },
             {//right door 3
                 "position": [4.9, 0.5, -6],
-                "rotation": [0, 90, 0],
+                "rotation": [0, -90, 0],
                 "scale": [0.7, 1.5, 0.7],
                 "components": [
                     {
@@ -784,7 +790,7 @@
                     "type": "Light",
                     "lightType": "point",
                     "direction":[0, -1 ,0.5 ], 
-                    "color": [0.5, 0.5,0.5],
+                    "color": [0.1, 0.1,0.1],
                     "innerConeAngle": 30.0,
                     "outerConeAngle": 60.0,
                     "attenuation": [1, 0.014, 0.0007]
@@ -812,7 +818,7 @@
                     "type": "Light",
                     "lightType": "spot",
                     "direction":[-4.9, -0.5 ,0 ], 
-                    "color": [1, 1,1],
+                    "color": [1, 0.5,0.1],
                     "innerConeAngle": 10.0,
                     "outerConeAngle": 60.0,
                     "attenuation": [1, 0.014, 0.0007]
