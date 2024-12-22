@@ -40,10 +40,10 @@
                 "wood": "assets/textures/wood.jpg",
                 "glass": "assets/textures/glass-panels.png",
                 "monkey": "assets/textures/monkey.png",
-                "wall": "assets/textures/brick-wall/albedoMap.jpg",
-                "wall-ao": "assets/textures/brick-wall/AmbientOcclusionMap.png", 
-                "wall-specular": "assets/textures/brick-wall/SpecularMap.png", 
-                "wall-roughness": "assets/textures/brick-wall/DisplacementMap.png"
+                "wall": "assets/textures/floor/floor-albedo.png",
+                "wall-ao": "assets/textures/floor/floor-AO.png", 
+                "wall-specular": "assets/textures/floor/floor-specular2.png", 
+                "wall-roughness": "assets/textures/floor/floor-roughness.png"
                 
             },
             "meshes": {
