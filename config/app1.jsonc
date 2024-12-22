@@ -38,8 +38,9 @@
                 "monkey": "assets/textures/monkey.png",
                 "laptop": "assets/Notebook/textures/Lowpoly_Laptop_2.jpg",
                 "green-bar": "assets/textures/green-bar.png",
-                "fire-extinguisher": "assets/FireExtinguisher/FireExtinguisher_D.png"
-                
+                "fire-extinguisher": "assets/FireExtinguisher/FireExtinguisher_D.png",
+                "chair": "assets/textures/Chair-1.jpg",
+                "button1": "assets/Emergency Stop/Nood_Stop_AI.jpg"
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
@@ -48,7 +49,10 @@
                 "sphere": "assets/models/sphere.obj",
                 "doormesh": "assets/Room-Door/Door_Component_BI3.obj",
                 "laptop": "assets/Notebook/Lowpoly_Notebook_2.obj",
-                "FireExtinguisher": "assets/FireExtinguisher/fire extinguisher.obj"
+                "FireExtinguisher": "assets/FireExtinguisher/fire extinguisher.obj",
+                "Gun": "assets/M4A1/M4A1.obj",
+                "chair": "assets/models/Chair.obj",
+                "button1": "assets/Emergency Stop/Emergency_Stop.obj"
             },
             "samplers": {
                 "default": {},
@@ -220,6 +224,26 @@
                     ],
                     "texture": "fire-extinguisher",
                     "sampler": "default"
+                },
+                "Button1": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "button1",
+                    "sampler": "default"
                 }
             }
         },
@@ -242,8 +266,10 @@
                         "rotaionAxis": [0,0,0], //default [1,1,1]
                         "motionAxis": [1,1,1], //default [1,1,1]
                         "collider":{
-                            "type": "Box Collider",
-                            "halfExtents": [0.5, 0.5, 0.5],                            
+                            "type": "Capsule Collider",
+                            "radius": 0.5,
+                            "height": 1.0,
+
                             "bounciness":0.0,
                             "friction": 1.0,                            
                             "isTrigger": false // default is false
@@ -254,11 +280,11 @@
                     {
                         "position": [1, -1, -1],
                         "rotation": [45, 45, 0],
-                        "scale": [0.1, 0.1, 1.0],
+                        "scale": [0.09, 0.09, 0.09],
                         "components": [
                             {
                                 "type": "Mesh Renderer",
-                                "mesh": "cube",
+                                "mesh": "Gun",
                                 "material": "metal"
                             }
                         ]
@@ -594,7 +620,7 @@
                         "type": "Movement",
                         "angularVelocity": [
                             0,
-                            20,
+                            100,
                             0
                         ]
                     }
@@ -614,13 +640,35 @@
                         "type": "RigidBody",
                         "r3dType": "Static",
                         "collider":{
-                            "type": "Box Collider",
-                            "halfExtents": [5, 5, 5],
+                            "type": "Capsule Collider",
+                            "radius": 0.5,
+                            "height": 5.0,
                             "bounciness":0.0
                         }
                     }
                 ]
             },
+            // {//wrong button
+            //     "position": [0, 0, 0],
+            //     "rotation": [0, 0, -90],
+            //     "scale": [0.002, 0.002, 0.002],
+            //     "components": [
+            //         {
+            //             "type": "Mesh Renderer",
+            //             "mesh": "button1",
+            //             "material": "Button1"
+            //         },
+            //         {
+            //             "type": "RigidBody",
+            //             "r3dType": "Static",
+            //             "collider":{
+            //                 "type": "Box Collider",
+            //                 "halfExtents": [0.05, 0.05, 0.05],
+            //                 "bounciness":0.0
+            //             }
+            //         }
+            //     ]
+            // },
             {//sky (ceiling)
                 "position": [0, 3, 0],
                 "rotation": [90, 0, 0],
