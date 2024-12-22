@@ -7,8 +7,9 @@
 #include <systems/free-camera-controller.hpp>
 #include <systems/movement.hpp>
 #include <asset-loader.hpp>
-#include<components/light.hpp>
-#include<components/camera.hpp>
+#include <components/light.hpp>
+#include <components/camera.hpp>
+
 // This state shows how to use the ECS framework and deserialization.
 class Playstate : public our::State
 {
@@ -27,7 +28,8 @@ class Playstate : public our::State
         {
             our::deserializeAllAssets(config["assets"]);
         }
-        if(config.contains("physicsWorld")){
+        if (config.contains("physicsWorld"))
+        {
             world.deserialize_physics(config["physicsWorld"]);
         }
         // If we have a world in the scene config, we use it to populate our world
@@ -53,22 +55,40 @@ class Playstate : public our::State
         // Get a reference to the keyboard object
         auto &keyboard = getApp()->getKeyboard();
 
-        if (keyboard.justPressed(GLFW_KEY_K))
+        // red door
+        if (world.getDoor() != -1 && world.getDoor() != 1)
         {
-            // If the escape  key is pressed in this frame, go to the play state
+            world.setDoor(-1);
+
             getApp()->changeState("level1");
         }
-        // Torch 
-        if(keyboard.justPressed(GLFW_KEY_F)) {
-        // Find camera entity and its light component
-            for(auto entity : world.getEntities()) {
-                if(auto camera = entity->getComponent<our::CameraComponent>()) {
-                    if(auto light = entity->getComponent<our::lightComponent>()) {
+        // green door
+        else if (world.getDoor() != -1 && world.getDoor() != 2)
+        {
+            world.setDoor(-1);
+
+            getApp()->changeState("level2");
+        }
+        // Torch
+        if (keyboard.justPressed(GLFW_KEY_F))
+        {
+            // Find camera entity and its light component
+            for (auto entity : world.getEntities())
+            {
+                if (auto camera = entity->getComponent<our::CameraComponent>())
+                {
+                    if (auto light = entity->getComponent<our::lightComponent>())
+                    {
                         light->toggle();
                     }
                     break;
                 }
             }
+        }
+        if (keyboard.justPressed(GLFW_KEY_ESCAPE))
+        {
+            // If the escape  key is pressed in this frame, go to the play state
+            getApp()->changeState("menu");
         }
     }
 

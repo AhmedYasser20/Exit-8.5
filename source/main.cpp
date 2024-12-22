@@ -17,6 +17,10 @@
 #include "states/entity-test-state.hpp"
 #include "states/renderer-test-state.hpp"
 #include "states/level1.hpp"
+#include "states/level2.hpp"
+#include "states/level3.hpp"
+#include "states/win_state.hpp"
+
 int main(int argc, char **argv)
 {
 
@@ -56,7 +60,11 @@ int main(int argc, char **argv)
     app.registerState<EntityTestState>("entity-test");
     app.registerState<RendererTestState>("renderer-test");
     app.registerState<level1>("level1");
+    app.registerState<level2>("level2");
+    app.registerState<level3>("level3");
+    app.registerState<WinState>("win");
     // Then choose the state to run based on the option "start-scene" in the config
+
     if (app_config.contains(std::string{"start-scene"}))
     {
         app.changeState(app_config["start-scene"].get<std::string>());

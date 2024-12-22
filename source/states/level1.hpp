@@ -24,7 +24,12 @@ class level1 : public our::State
         // If we have assets in the scene config, we deserialize them
         if (config.contains("assets"))
         {
+
             our::deserializeAllAssets(config["assets"]);
+        }
+        if (config.contains("physicsWorld"))
+        {
+            world.deserialize_physics(config["physicsWorld"]);
         }
         // If we have a world in the scene config, we use it to populate our world
         if (config.contains("world2"))
@@ -48,7 +53,20 @@ class level1 : public our::State
 
         // Get a reference to the keyboard object
         auto &keyboard = getApp()->getKeyboard();
+        // red
+        if (world.getDoor() != -1 && world.getDoor() != 1)
+        {
+            world.setDoor(-1);
 
+            getApp()->changeState("level2");
+        }
+        // green
+        else if (world.getDoor() != -1 && world.getDoor() != 2)
+        {
+            world.setDoor(-1);
+
+            getApp()->changeState("play");
+        }
         if (keyboard.justPressed(GLFW_KEY_ESCAPE))
         {
             // If the escape  key is pressed in this frame, go to the play state

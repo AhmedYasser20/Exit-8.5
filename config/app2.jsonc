@@ -36,8 +36,8 @@
             },
             "textures": {
                 "floor": "assets/textures/floor/floor-albedo.png",
-                "floor-ao": "assets/textures/floor/floor-AO.png", 
-                "floor-specular": "assets/textures/floor/floor-specular.png", 
+                "floor-ao": "assets/textures/floor/floor-AO.png",
+                "floor-specular": "assets/textures/floor/floor-specular.png",
                 "floor-roughness": "assets/textures/floor/floor-roughness.png",
                 "wall": "assets/textures/wall.jpg",
                 "sky": "assets/textures/sky.jpg",
@@ -45,20 +45,20 @@
                 "door_arm": "assets/Room-Door/textures/Reflexion.jpg",
                 "monkey": "assets/textures/monkey.png",
                 "laptop": "assets/Notebook/textures/Lowpoly_Laptop_2.jpg",
-                "residential1" : "assets/obj/textures/AussenWand_C.jpg",    
-                "residential2" : "assets/obj/textures/AussenWand_N.jpg",
-                "residential3" : "assets/obj/textures/Box_D.jpg",  
-                "residential4" : "assets/obj/textures/Box_N.jpg",
-                "residential5" : "assets/obj/textures/Hotel_Hous_AO.png",
-                "residential6" : "assets/obj/textures/Hotel_Hous_C.jpg",
+                "residential1": "assets/obj/textures/AussenWand_C.jpg",
+                "residential2": "assets/obj/textures/AussenWand_N.jpg",
+                "residential3": "assets/obj/textures/Box_D.jpg",
+                "residential4": "assets/obj/textures/Box_N.jpg",
+                "residential5": "assets/obj/textures/Hotel_Hous_AO.png",
+                "residential6": "assets/obj/textures/Hotel_Hous_C.jpg",
                 "brick-wall": "assets/textures/brick-wall/albedoMap2.png",
-                "brick-wall-ao": "assets/textures/brick-wall/AmbientOcclusionMap2.png", 
-                "brick-wall-specular": "assets/textures/brick-wall/SpecularMap2.png", 
+                "brick-wall-ao": "assets/textures/brick-wall/AmbientOcclusionMap2.png",
+                "brick-wall-specular": "assets/textures/brick-wall/SpecularMap2.png",
                 "brick-wall-roughness": "assets/textures/brick-wall/RoughnessMap2.png",
-                "blockwall" : "assets/Wall/1_'.jpg",
-                "blockwall2" : "assets/Wall/5.jpg",
+                "blockwall": "assets/Wall/1_'.jpg",
+                "blockwall2": "assets/Wall/5.jpg",
                 "torch": "assets/textures/2.png",
-                "fire-extinguisher": "assets/FireExtinguisher/FireExtinguisher_D.png"    
+                "fire-extinguisher": "assets/FireExtinguisher/FireExtinguisher_D.png"
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
@@ -67,17 +67,17 @@
                 "sphere": "assets/models/sphere.obj",
                 "laptop": "assets/Notebook/Lowpoly_Notebook_2.obj",
                 "man": "assets/man/rp_dennis_posed_004_100k.OBJ",
-                "residential1" : "assets/obj/Residential_Buildings_001.obj",
-                "residential2" : "assets/obj/Residential Buildings 002.obj",
-                "residential3" : "assets/obj/Residential Buildings 003.obj",
-                "residential4" : "assets/obj/Residential Buildings 004.obj",
-                "residential5" : "assets/obj/Residential Buildings 005.obj",
-                "residential6" : "assets/obj/Residential Buildings 006.obj",
-                "residential7" : "assets/obj/Residential Buildings 007.obj",
-                "residential8" : "assets/obj/Residential Buildings 008.obj",
-                "residential9" : "assets/obj/Residential Buildings 009.obj",
-                "residential10" : "assets/obj/Residential Buildings 010.obj",
-                "blockwall" : "assets/Wall/wall.obj",
+                "residential1": "assets/obj/Residential_Buildings_001.obj",
+                "residential2": "assets/obj/Residential Buildings 002.obj",
+                "residential3": "assets/obj/Residential Buildings 003.obj",
+                "residential4": "assets/obj/Residential Buildings 004.obj",
+                "residential5": "assets/obj/Residential Buildings 005.obj",
+                "residential6": "assets/obj/Residential Buildings 006.obj",
+                "residential7": "assets/obj/Residential Buildings 007.obj",
+                "residential8": "assets/obj/Residential Buildings 008.obj",
+                "residential9": "assets/obj/Residential Buildings 009.obj",
+                "residential10": "assets/obj/Residential Buildings 010.obj",
+                "blockwall": "assets/Wall/wall.obj",
                 "torch": "assets/models/flashlight.obj",
                 "FireExtinguisher": "assets/FireExtinguisher/fire extinguisher.obj"
             },
@@ -123,12 +123,17 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1],
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
                     "texture": "brick-wall",
                     "sampler": "repeat",
                     "ambient_occlusion": "brick-wall-ao",
                     "specular": "brick-wall-specular",
-                    "roughness":"brick-wall-roughness"
+                    "roughness": "brick-wall-roughness"
                 },
                 "blockwall": {
                     "type": "textured",
@@ -141,7 +146,12 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1],
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
                     "texture": "blockwall",
                     "sampler": "default"
                 },
@@ -156,12 +166,17 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1],
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
                     "texture": "floor",
                     "sampler": "repeat",
                     "ambient_occlusion": "floor-ao",
                     "specular": "floor-specular",
-                    "roughness":"floor-roughness"
+                    "roughness": "floor-roughness"
                 },
                 "sky": {
                     "type": "textured",
@@ -174,7 +189,12 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1],
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
                     "texture": "sky",
                     "sampler": "default"
                 },
@@ -189,7 +209,12 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1],
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
                     "texture": "laptop",
                     "sampler": "default"
                 },
@@ -204,7 +229,12 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1],
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
                     "texture": "man",
                     "sampler": "default"
                 },
@@ -230,10 +260,14 @@
                 }
             }
         },
-        "physicsWorld":{},
+        "physicsWorld": {},
         "world": [
-            {//Player
-                "position": [0, 0, 10],
+            { //Player
+                "position": [
+                    0,
+                    0,
+                    10
+                ],
                 "components": [
                     {
                         "type": "Camera"
@@ -246,270 +280,622 @@
                         "r3dType": "Dynamic", // Satic->floor, Kinematic->moving platforms, Dynamic->player  // default is Static
                         "enableGravity": true, // default is false
                         "allowedToSleep": false, // default is false: keep as false for player or moving object, true for static objects
-                        "rotaionAxis": [0,0,0], //default [1,1,1]
-                        "motionAxis": [1,1,1], //default [1,1,1]
-                        "collider":{
+                        "rotaionAxis": [
+                            0,
+                            0,
+                            0
+                        ], //default [1,1,1]
+                        "motionAxis": [
+                            1,
+                            1,
+                            1
+                        ], //default [1,1,1]
+                        "collider": {
                             "type": "Capsule Collider",
                             "radius": 0.5,
                             "height": 1.0,
-                            "bounciness":0.0,
-                            "friction": 1.0,                            
+                            "bounciness": 0.0,
+                            "friction": 1.0,
                             "isTrigger": false // default is false
                         }
                     }
                 ]
             },
-            {//Stairs
-                "position": [6, -1, 15],
-                "rotation": [0, 0, 0],
-                "scale": [3, 0.1, 0.3],
-                "components": [{"type": "Mesh Renderer", "mesh": "cube", "material": "metal"},
+            { //Stairs
+                "position": [
+                    6,
+                    -1,
+                    15
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    3,
+                    0.1,
+                    0.3
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "metal"
+                    },
                     {
                         "type": "RigidBody",
                         "rp3dType": "Static",
-                        "collider":{
+                        "collider": {
                             "type": "Box Collider",
-                            "halfExtents": [3, 1, 1],
-                            "bounciness":0.0
+                            "halfExtents": [
+                                3,
+                                1,
+                                1
+                            ],
+                            "bounciness": 0.0
                         }
                     }
                 ]
             },
-            {//Stairs
-                "position": [6, -1, 16],
-                "rotation": [0, 0, 0],
-                "scale": [3, 0.1, 0.7],
-                "components": [{"type": "Mesh Renderer", "mesh": "cube", "material": "metal"},
+            { //Stairs
+                "position": [
+                    6,
+                    -1,
+                    16
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    3,
+                    0.1,
+                    0.7
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "metal"
+                    },
                     {
                         "type": "RigidBody",
                         "rp3dType": "Static",
-                        "collider":{
+                        "collider": {
                             "type": "Box Collider",
-                            "halfExtents": [3, 1, 1],
-                            "bounciness":0.0
+                            "halfExtents": [
+                                3,
+                                1,
+                                1
+                            ],
+                            "bounciness": 0.0
                         }
                     }
                 ]
             },
-            {//Stairs
-                "position": [6, -2, 17],
-                "rotation": [0, 0, 0],
-                "scale": [3, 0.6, 0.7],
-                "components": [{"type": "Mesh Renderer", "mesh": "cube", "material": "metal"},
+            { //Stairs
+                "position": [
+                    6,
+                    -2,
+                    17
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    3,
+                    0.6,
+                    0.7
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "metal"
+                    },
                     {
                         "type": "RigidBody",
                         "rp3dType": "Static",
-                        "collider":{
+                        "collider": {
                             "type": "Box Collider",
-                            "halfExtents": [3, 1, 1],
-                            "bounciness":0.0
+                            "halfExtents": [
+                                3,
+                                1,
+                                1
+                            ],
+                            "bounciness": 0.0
                         }
                     }
                 ]
             },
-            {//Stairs
-                "position": [6, -3, 18],
-                "rotation": [0, 0, 0],
-                "scale": [3, 0.6, 0.7],
-                "components": [{"type": "Mesh Renderer", "mesh": "cube", "material": "metal"},
+            { //Stairs
+                "position": [
+                    6,
+                    -3,
+                    18
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    3,
+                    0.6,
+                    0.7
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "metal"
+                    },
                     {
                         "type": "RigidBody",
                         "rp3dType": "Static",
-                        "collider":{
+                        "collider": {
                             "type": "Box Collider",
-                            "halfExtents": [3, 1, 1],
-                            "bounciness":0.0
+                            "halfExtents": [
+                                3,
+                                1,
+                                1
+                            ],
+                            "bounciness": 0.0
                         }
                     }
                 ]
             },
-            {//Stairs
-                "position": [6, -4, 19],
-                "rotation": [0, 0, 0],
-                "scale": [3, 0.6, 0.7],
-                "components": [{"type": "Mesh Renderer", "mesh": "cube", "material": "metal"},
+            { //Stairs
+                "position": [
+                    6,
+                    -4,
+                    19
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    3,
+                    0.6,
+                    0.7
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "cube",
+                        "material": "metal"
+                    },
                     {
                         "type": "RigidBody",
                         "rp3dType": "Static",
-                        "collider":{
+                        "collider": {
                             "type": "Box Collider",
-                            "halfExtents": [3, 1, 1],
-                            "bounciness":0.0
+                            "halfExtents": [
+                                3,
+                                1,
+                                1
+                            ],
+                            "bounciness": 0.0
                         }
                     }
                 ]
             },
-            {//down floor
-               "position": [6, -4, 19],
-               "rotation": [-90, 0, 0],
-               "scale": [15, 15, 1],
-               "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "floor"},
-                   {
-                       "type": "RigidBody",
-                       "rp3dType": "Static",
-                       "collider":{
-                           "type": "Box Collider",
-                           "halfExtents": [15, 15, 1],
-                           "bounciness":0.0
-                       }
-                   }
-               ]
-           },
-            {//up floor
-                "position": [0, -1, 0],
-                "rotation": [-90, 0, 0],
-                "scale": [15, 15, 1],
-                "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "floor"},
+            { //down floor
+                "position": [
+                    6,
+                    -4,
+                    19
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "scale": [
+                    15,
+                    15,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "floor"
+                    },
                     {
                         "type": "RigidBody",
                         "rp3dType": "Static",
-                        "collider":{
+                        "collider": {
                             "type": "Box Collider",
-                            "halfExtents": [15, 15, 1],
-                            "bounciness":0.0
+                            "halfExtents": [
+                                15,
+                                15,
+                                1
+                            ],
+                            "bounciness": 0.0
                         }
                     }
                 ]
             },
-            {//wall
-                "position": [0, 1, -10],
-                "rotation": [0, 0, 0],
-                "scale": [5, 2, 1],
-                "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "wall"},
+            { //up floor
+                "position": [
+                    0,
+                    -1,
+                    0
+                ],
+                "rotation": [
+                    -90,
+                    0,
+                    0
+                ],
+                "scale": [
+                    15,
+                    15,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "floor"
+                    },
                     {
                         "type": "RigidBody",
                         "rp3dType": "Static",
-                        "collider":{
+                        "collider": {
                             "type": "Box Collider",
-                            "halfExtents": [5, 2, 1],
-                            "bounciness":0.0
+                            "halfExtents": [
+                                15,
+                                15,
+                                1
+                            ],
+                            "bounciness": 0.0
                         }
                     }
                 ]
             },
-            {//wall behind the stairs
-                "position": [3, -3, 15],
-                "rotation": [0, 0, 0],
-                "scale": [18, 2, 1],
-                "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "wall"},
+            { //wall
+                "position": [
+                    0,
+                    1,
+                    -10
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    5,
+                    2,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "wall"
+                    },
                     {
                         "type": "RigidBody",
                         "rp3dType": "Static",
-                        "collider":{
+                        "collider": {
                             "type": "Box Collider",
-                            "halfExtents": [1, 1, 1],
-                            "bounciness":0.0
+                            "halfExtents": [
+                                5,
+                                2,
+                                1
+                            ],
+                            "bounciness": 0.0
                         }
                     }
                 ]
             },
-            {//wall above the stairs
-                "position": [10, 0, 10],
-                "rotation": [0, 0, 0],
-                "scale": [5, 5, 1],
-                "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "wall"},
+            { //wall behind the stairs
+                "position": [
+                    3,
+                    -3,
+                    15
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    18,
+                    2,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "wall"
+                    },
                     {
                         "type": "RigidBody",
                         "rp3dType": "Static",
-                        "collider":{
+                        "collider": {
                             "type": "Box Collider",
-                            "halfExtents": [5, 5, 1],
-                            "bounciness":0.0
+                            "halfExtents": [
+                                1,
+                                1,
+                                1
+                            ],
+                            "bounciness": 0.0
                         }
                     }
                 ]
             },
-            {//blockwall above the stairs left
-                "position": [12, -1, 15],
-                "rotation": [0, 0, 0],
-                "scale": [0.5, 0.2, 0.2],
-                "components": [{"type": "Mesh Renderer", "mesh": "blockwall", "material": "blockwall"},
+            { //wall above the stairs
+                "position": [
+                    10,
+                    0,
+                    10
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    5,
+                    5,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "wall"
+                    },
                     {
                         "type": "RigidBody",
                         "rp3dType": "Static",
-                        "collider":{
+                        "collider": {
                             "type": "Box Collider",
-                            "halfExtents": [3, 2, 1],
-                            "bounciness":0.0
+                            "halfExtents": [
+                                5,
+                                5,
+                                1
+                            ],
+                            "bounciness": 0.0
                         }
                     }
                 ]
             },
-            {//blockwall above the stairs right
-                "position": [-1, -1, 15],
-                "rotation": [0, 0, 0],
-                "scale": [0.7, 0.2, 0.2],
-                "components": [{"type": "Mesh Renderer", "mesh": "blockwall", "material": "blockwall"},
+            { //blockwall above the stairs left
+                "position": [
+                    12,
+                    -1,
+                    15
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    0.5,
+                    0.2,
+                    0.2
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "blockwall",
+                        "material": "blockwall"
+                    },
                     {
                         "type": "RigidBody",
                         "rp3dType": "Static",
-                        "collider":{
+                        "collider": {
                             "type": "Box Collider",
-                            "halfExtents": [4, 2, 1],
-                            "bounciness":0.0
+                            "halfExtents": [
+                                3,
+                                2,
+                                1
+                            ],
+                            "bounciness": 0.0
                         }
                     }
                 ]
             },
-            {//side wall elevator
-                "position": [5, -1, 0],
-                "rotation": [0, 90, 0],
-                "scale": [10, 4, 2],
-                "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "wall"},
+            { //blockwall above the stairs right
+                "position": [
+                    -1,
+                    -1,
+                    15
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    0.7,
+                    0.2,
+                    0.2
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "blockwall",
+                        "material": "blockwall"
+                    },
                     {
                         "type": "RigidBody",
                         "rp3dType": "Static",
-                        "collider":{
+                        "collider": {
                             "type": "Box Collider",
-                            "halfExtents": [10, 4, 2],
-                            "bounciness":0.0
+                            "halfExtents": [
+                                4,
+                                2,
+                                1
+                            ],
+                            "bounciness": 0.0
                         }
                     }
                 ]
             },
-            {//side wall long
-                "position": [-5, -1, 10],
-                "rotation": [0, 90, 0],
-                "scale": [25, 4, 2],
-                "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "wall"},
+            { //side wall elevator
+                "position": [
+                    5,
+                    -1,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    90,
+                    0
+                ],
+                "scale": [
+                    10,
+                    4,
+                    2
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "wall"
+                    },
                     {
                         "type": "RigidBody",
                         "rp3dType": "Static",
-                        "collider":{
+                        "collider": {
                             "type": "Box Collider",
-                            "halfExtents": [25, 4, 2],
-                            "bounciness":0.0
+                            "halfExtents": [
+                                10,
+                                4,
+                                2
+                            ],
+                            "bounciness": 0.0
                         }
                     }
                 ]
             },
-            {//side wall
-                "position": [15, -1, 10],
-                "rotation": [0, 90, 0],
-                "scale": [25, 4, 2],
-                "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "wall"},
+            { //side wall long
+                "position": [
+                    -5,
+                    -1,
+                    10
+                ],
+                "rotation": [
+                    0,
+                    90,
+                    0
+                ],
+                "scale": [
+                    25,
+                    4,
+                    2
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "wall"
+                    },
                     {
                         "type": "RigidBody",
                         "rp3dType": "Static",
-                        "collider":{
+                        "collider": {
                             "type": "Box Collider",
-                            "halfExtents": [25, 4, 2],
-                            "bounciness":0.0
+                            "halfExtents": [
+                                25,
+                                4,
+                                2
+                            ],
+                            "bounciness": 0.0
                         }
                     }
                 ]
             },
-            {//sky (ceiling)
-                "position": [0, 3, 0],
-                "rotation": [90, 0, 0],
-                "scale": [30, 15, 1],
-                "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "wall"}
+            { //side wall
+                "position": [
+                    15,
+                    -1,
+                    10
+                ],
+                "rotation": [
+                    0,
+                    90,
+                    0
+                ],
+                "scale": [
+                    25,
+                    4,
+                    2
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "RigidBody",
+                        "rp3dType": "Static",
+                        "collider": {
+                            "type": "Box Collider",
+                            "halfExtents": [
+                                25,
+                                4,
+                                2
+                            ],
+                            "bounciness": 0.0
+                        }
+                    }
                 ]
             },
-            {//fire-extinguisher
-                "position": [0, -1, -9],
-                "rotation": [0, 0, 0],
-                "scale": [5, 5, 5],
+            { //sky (ceiling)
+                "position": [
+                    0,
+                    3,
+                    0
+                ],
+                "rotation": [
+                    90,
+                    0,
+                    0
+                ],
+                "scale": [
+                    30,
+                    15,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "plane",
+                        "material": "wall"
+                    }
+                ]
+            },
+            { //fire-extinguisher
+                "position": [
+                    0,
+                    -1,
+                    -9
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    5,
+                    5,
+                    5
+                ],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -519,19 +905,31 @@
                     {
                         "type": "RigidBody",
                         "r3dType": "Static",
-                        "collider":{
+                        "collider": {
                             "type": "Capsule Collider",
                             "radius": 0.5,
                             "height": 5.0,
-                            "bounciness":0.0
+                            "bounciness": 0.0
                         }
                     }
                 ]
             },
-            {//fire-extinguisher
-                "position": [-4, -1, 14],
-                "rotation": [0, 0, 0],
-                "scale": [5, 5, 5],
+            { //fire-extinguisher
+                "position": [
+                    -4,
+                    -1,
+                    14
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    5,
+                    5,
+                    5
+                ],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -541,19 +939,31 @@
                     {
                         "type": "RigidBody",
                         "r3dType": "Static",
-                        "collider":{
+                        "collider": {
                             "type": "Capsule Collider",
                             "radius": 0.5,
                             "height": 5.0,
-                            "bounciness":0.0
+                            "bounciness": 0.0
                         }
                     }
                 ]
             },
-            {//fire-extinguisher
-                "position": [14, -1, 14],
-                "rotation": [0, 0, 0],
-                "scale": [5, 5, 5],
+            { //fire-extinguisher
+                "position": [
+                    14,
+                    -1,
+                    14
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    5,
+                    5,
+                    5
+                ],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -563,43 +973,55 @@
                     {
                         "type": "RigidBody",
                         "r3dType": "Static",
-                        "collider":{
+                        "collider": {
                             "type": "Capsule Collider",
                             "radius": 0.5,
                             "height": 5.0,
-                            "bounciness":0.0
+                            "bounciness": 0.0
                         }
                     }
                 ]
             },
             { // light spot
-            "position": [
-                4,
-                1,
-                -9
-            ],
-            "rotation": [
-                0,  
-                0,
-                0
-            ],
-            "scale": [
-                1,
-                1,
-                1
-            ],
-            "components": [
-                {
-                    "type": "Light",
-                    "lightType": "point",
-                    "direction":[0, -1 ,0.5 ], 
-                    "color": [0.5, 0.5,0.5],
-                    "innerConeAngle": 30.0,
-                    "outerConeAngle": 60.0,
-                    "attenuation": [1, 0.014, 0.0007]
-                }
-            ]
-            }    
+                "position": [
+                    4,
+                    1,
+                    -9
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ],
+                "components": [
+                    {
+                        "type": "Light",
+                        "lightType": "point",
+                        "direction": [
+                            0,
+                            -1,
+                            0.5
+                        ],
+                        "color": [
+                            0.5,
+                            0.5,
+                            0.5
+                        ],
+                        "innerConeAngle": 30.0,
+                        "outerConeAngle": 60.0,
+                        "attenuation": [
+                            1,
+                            0.014,
+                            0.0007
+                        ]
+                    }
+                ]
+            }
         ]
     }
 }
