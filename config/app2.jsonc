@@ -16,7 +16,7 @@
     ],
     "scene": {
         "renderer": {
-            "sky": "assets/textures/cufe.jpg",
+            "sky": "assets/textures/spooky.jpg",
             "postprocess": "assets/shaders/postprocess/vignette.frag"
         },
         "assets": {
@@ -55,8 +55,10 @@
                 "brick-wall-ao": "assets/textures/brick-wall/AmbientOcclusionMap2.png", 
                 "brick-wall-specular": "assets/textures/brick-wall/SpecularMap2.png", 
                 "brick-wall-roughness": "assets/textures/brick-wall/RoughnessMap2.png",
-                "blockwall" : "assets/Wall/1_'.jpg",
-                "blockwall2" : "assets/Wall/5.jpg",
+                "sandstone" : "assets/Wall/seaworn_sandstone_brick_diff.jpg",
+                "sandstone-ao" : "assets/Wall/seaworn_sandstone_brick_ao.jpg",
+                "sandstone-rough": "assets/Wall/seaworn_sandstone_brick_rough.jpg",
+                "sandstone-specular": "assets/Wall/seaworn_sandstone_brick_arm.jpg",
                 "torch": "assets/textures/2.png",
                 "fire-extinguisher": "assets/FireExtinguisher/FireExtinguisher_D.png"    
             },
@@ -131,8 +133,8 @@
                     "roughness":"brick-wall-roughness"
                 },
                 "blockwall": {
-                    "type": "textured",
-                    "shader": "textured",
+                    "type": "lit",
+                    "shader": "lit",
                     "pipelineState": {
                         "faceCulling": {
                             "enabled": false
@@ -142,8 +144,11 @@
                         }
                     },
                     "tint": [1, 1, 1, 1],
-                    "texture": "blockwall",
-                    "sampler": "default"
+                    "texture": "sandstone",
+                    "sampler": "repeat",
+                    "ambient_occlusion": "sandstone-ao",
+                    "specular": "sandstone-specular",
+                    "roughness":"sandstone-roughness"
                 },
                 "floor": {
                     "type": "lit",
@@ -599,7 +604,35 @@
                     "attenuation": [1, 0.014, 0.0007]
                 }
             ]
-            }    
+            },
+            { // light directional
+            "position": [
+                4,
+                1,
+                -9
+            ],
+            "rotation": [
+                0,  
+                0,
+                0
+            ],
+            "scale": [
+                1,
+                1,
+                1
+            ],
+            "components": [
+                {
+                    "type": "Light",
+                    "lightType": "directional",
+                    "direction":[0, -1 , 0], 
+                    "color": [1, 1, 1.2],
+                    "innerConeAngle": 30.0,
+                    "outerConeAngle": 60.0,
+                    "attenuation": [1, 0.014, 0.0007]
+                }
+            ]
+            }        
         ]
     }
 }
