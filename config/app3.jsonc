@@ -60,7 +60,10 @@
                 "Image2": "assets/textures/Red2.jpg",
                 "Image3": "assets/textures/Red3.jpg",
                 "Image4": "assets/textures/Red4.jpg",
-                "Image5": "assets/textures/Image5.jpg"
+                "Image5": "assets/textures/Image5.jpg",
+                "Image-board-ao": "assets/textures/images/image-ao.png",
+                "Image-board-specular": "assets/textures/images/image-specular.png",
+                "Image-board-roughness": "assets/textures/images/image-roughness.png"
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
@@ -152,6 +155,29 @@
                     "specular": "floor-specular",
                     "roughness":"floor-roughness"
 
+                },
+                "image-board": {
+                    "type": "lit",
+                    "shader": "lit",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "texture": "Image2",
+                    "sampler": "repeat",
+                    "ambient_occlusion": "Image-board-ao",
+                    "specular": "Image-board-specular",
+                    "roughness":"Image-board-roughness"
                 },
                 "sky": {
                     "type": "textured",
@@ -277,8 +303,8 @@
                     "sampler": "default"
                 },
                 "img1": {
-                    "type": "textured",
-                    "shader": "textured",
+                    "type": "lit",
+                    "shader": "lit",
                     "pipelineState": {
                         "faceCulling": {
                             "enabled": false
@@ -294,7 +320,10 @@
                         1
                     ],
                     "texture": "Image1",
-                    "sampler": "default"
+                    "sampler": "repeat",
+                    "ambient_occlusion": "Image-board-ao",
+                    "specular": "Image-board-specular",
+                    "roughness":"Image-board-roughness"
                 },
                 "img2": {
                     "type": "textured",
@@ -814,7 +843,7 @@
                     {
                         "type": "Mesh Renderer",
                         "mesh": "plane",
-                        "material": "img1"
+                        "material": "image-board"
                     }
                 ]
             },
