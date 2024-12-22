@@ -319,9 +319,9 @@
                         "type": "Light",
                         "lightType": "spot",
                         "direction":[0, 0 ,-2 ], 
-                        "color": [2, 2,2],
+                        "color": [1, 1, 1],
                         "innerConeAngle": 10.0,
-                        "outerConeAngle": 30.0,
+                        "outerConeAngle": 20.0,
                         "attenuation": [1, 0.014, 0.0007]
                     }
                 ],
@@ -333,7 +333,7 @@
                         "components": [
                             {
                                 "type": "Mesh Renderer",
-                                "mesh": "Gun",
+                                "mesh": "cube",
                                 "material": "metal"
                             }
                         ]
@@ -343,7 +343,7 @@
             {//floor
                 "position": [0, -1, 0],
                 "rotation": [-90, 0, 0],
-                "scale": [5, 10, 1],
+                "scale": [5, 15, 1],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -355,16 +355,16 @@
                         "r3dType": "Static",
                         "collider":{
                             "type": "Box Collider",
-                            "halfExtents": [5, 10, 1],
+                            "halfExtents": [5, 15, 1],
                             "bounciness":0.0
                         }
                     }
                 ]
             },
             {//front wall
-                "position": [0, 1, -10],
+                "position": [0, 1, -15],
                 "rotation": [0, 0, 0],
-                "scale": [5, 2, 1],
+                "scale": [5, 3, 1],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -376,16 +376,16 @@
                         "r3dType": "Static",
                         "collider":{
                             "type": "Box Collider",
-                            "halfExtents": [5, 2, 1],
+                            "halfExtents": [5, 3, 1],
                             "bounciness":0.0
                         }
                     }
                 ]
             },
             {//back wall
-                "position": [0, 1, 10],
+                "position": [0, 1, 15],
                 "rotation": [180, 0, 0],
-                "scale": [5, 2, 1],
+                "scale": [5, 3, 1],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -397,14 +397,14 @@
                         "r3dType": "Static",
                         "collider":{
                             "type": "Box Collider",
-                            "halfExtents": [5, 2, 1],
+                            "halfExtents": [5, 3, 1],
                             "bounciness":0.0
                         }
                     }
                 ]
             },
             {//front bar 
-                "position": [0, 2.2, -9.95],
+                "position": [0, 2.5, -14.95],
                 "rotation": [0, 0, 0],
                 "scale": [5, 0.1, 1],
                 "components": [
@@ -425,7 +425,7 @@
                 ]
             },
             {//back bar 
-                "position": [0, 2.2, 9.95],
+                "position": [0, 2.5, 14.95],
                 "rotation": [0, 0, 0],
                 "scale": [5, 0.1, 1],
                 "components": [
@@ -448,7 +448,7 @@
             {//right side wall
                 "position": [5, 1, 0],
                 "rotation": [0, -90, 0],
-                "scale": [10, 2, 2],
+                "scale": [15, 3, 2],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -460,7 +460,7 @@
                         "r3dType": "Static",
                         "collider":{
                             "type": "Box Collider",
-                            "halfExtents": [10, 2, 2],
+                            "halfExtents": [15, 3, 2],
                             "bounciness":0.0
                         }
                     }
@@ -605,9 +605,9 @@
                 ]
             },
             {//right bar 
-                "position": [4.95, 2.2, 0],
+                "position": [4.95, 2.5, 0],
                 "rotation": [0, 90, 0],
-                "scale": [10, 0.1, 1],
+                "scale": [15, 0.1, 1],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -626,9 +626,9 @@
                 ]
             },
             {//left bar 
-                "position": [-4.95, 2.2, 0],
+                "position": [-4.95, 2.5, 0],
                 "rotation": [0, 90, 0],
-                "scale": [10, 0.1, 1],
+                "scale": [25, 0.1, 1],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -649,7 +649,7 @@
             {//left side wall
                 "position": [ -5, 1, 0 ],
                 "rotation": [ 0, 90, 0 ],
-                "scale": [ 10, 2, 2 ],
+                "scale": [ 15, 3, 2 ],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -661,14 +661,14 @@
                         "r3dType": "Static",
                         "collider":{
                             "type": "Box Collider",
-                            "halfExtents": [10, 2, 2],
+                            "halfExtents": [15, 3, 2],
                             "bounciness":0.0
                         }
                     }
                 ]
             },
             {//laptop
-                "position": [0, -0.9, -8],
+                "position": [0, -0.9, -13],
                 "rotation": [0, 0, 0],
                 "scale": [0.2, 0.2, 0.2],
                 "components": [
@@ -688,7 +688,7 @@
                 ]
             },
             {//fire-extinguisher
-                "position": [4, -1, -9],
+                "position": [4, -1, -14],
                 "rotation": [0, 0, 0],
                 "scale": [5, 5, 5],
                 "components": [
@@ -731,9 +731,9 @@
             //     ]
             // },
             {//sky (ceiling)
-                "position": [0, 3, 0],
+                "position": [0, 4, 0],
                 "rotation": [90, 0, 0],
-                "scale": [5, 10, 1],
+                "scale": [5, 15, 1],
                 "components": [
                     {
                         "type": "Mesh Renderer",
