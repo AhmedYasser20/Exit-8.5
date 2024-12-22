@@ -28,18 +28,23 @@
                 "textured": {
                     "vs": "assets/shaders/textured.vert",
                     "fs": "assets/shaders/textured.frag"
+                },
+                "lit": {
+                    "vs": "assets/shaders/lit.vert",
+                    "fs": "assets/shaders/lit.frag"
                 }
             },
             "textures": {
-                "grass": "assets/textures/floor.jpg",
+                "floor": "assets/textures/floor/floor-albedo.png",
+                "floor-ao": "assets/textures/floor/floor-AO.png", 
+                "floor-specular": "assets/textures/floor/floor-specular.png", 
+                "floor-roughness": "assets/textures/floor/floor-roughness.png",
                 "wall": "assets/textures/wall.jpg",
                 "sky": "assets/textures/sky.jpg",
                 "door": "assets/Room-Door/textures/Door_C.jpg",
                 "door_arm": "assets/Room-Door/textures/Reflexion.jpg",
                 "monkey": "assets/textures/monkey.png",
                 "laptop": "assets/Notebook/textures/Lowpoly_Laptop_2.jpg",
-                "man": "assets/man/tex/rp_dennis_posed_004_dif.jpg", 
-                "ladder": "assets/scala/all.png",
                 "residential1" : "assets/obj/textures/AussenWand_C.jpg",    
                 "residential2" : "assets/obj/textures/AussenWand_N.jpg",
                 "residential3" : "assets/obj/textures/Box_D.jpg",  
@@ -47,7 +52,7 @@
                 "residential5" : "assets/obj/textures/Hotel_Hous_AO.png",
                 "residential6" : "assets/obj/textures/Hotel_Hous_C.jpg",
                 "blockwall" : "assets/Wall/1_'.jpg",
-                "blockwall2" : "assets/Wall/5.jpg"           
+                "blockwall2" : "assets/Wall/5.jpg"         
             },
             "meshes": {
                 "cube": "assets/models/cube.obj",
@@ -73,6 +78,12 @@
                 "default": {},
                 "pixelated": {
                     "MAG_FILTER": "GL_NEAREST"
+                },
+                "repeat": {
+                    "MAG_FILTER": "GL_NEAREST",
+                    "MIN_FILTER": "GL_NEAREST",
+                    "WRAP_S": "GL_REPEAT",
+                    "WRAP_T": "GL_REPEAT"
                 }
             },
             "materials": {
@@ -137,9 +148,9 @@
                     "texture": "blockwall",
                     "sampler": "default"
                 },
-                "grass": {
-                    "type": "textured",
-                    "shader": "textured",
+                "floor": {
+                    "type": "lit",
+                    "shader": "lit",
                     "pipelineState": {
                         "faceCulling": {
                             "enabled": false
@@ -149,8 +160,11 @@
                         }
                     },
                     "tint": [1, 1, 1, 1],
-                    "texture": "grass",
-                    "sampler": "default"
+                    "texture": "floor",
+                    "sampler": "repeat",
+                    "ambient_occlusion": "floor-ao",
+                    "specular": "floor-specular",
+                    "roughness":"floor-roughness"
                 },
                 "sky": {
                     "type": "textured",
@@ -250,55 +264,14 @@
                         "collider":{
                             "type": "Box Collider",
                             "halfExtents": [0.2, 0.2, 0.2],
-                            // "type": "Sphere Collider",
-                            // "radius": 0.5,
-                            // "type": "Capsule Collider",
-                            // "radius": 0.5,
-                            // "height": 1.0,
-                            
-                            // for material
                             "bounciness":0.0,
-                            "friction": 1.0,
-                            
-                            // for trigger
+                            "friction": 1.0,                            
                             "isTrigger": false // default is false
                         }
                     }
-                ]//,
-            },
-            {//test object
-                "position": [0, -4, 30],
-                "rotation": [0, 0, 0],
-                "scale": [0.5, 0.5, 0.5],
-                "components": [{"type": "Mesh Renderer", "mesh": "residential9", "material": "Res1"},
-                    {
-                        "type": "RigidBody",
-                        "rp3dType": "Static",
-                        "collider":{
-                            "type": "Box Collider",
-                            "halfExtents": [1, 1, 1],
-                            "bounciness":0.0
-                        }
-                    }
                 ]
             },
-            {//test object 2
-                "position": [10, -4, 40],
-                "rotation": [0, 0, 0],
-                "scale": [0.5, 0.5, 0.5],
-                "components": [{"type": "Mesh Renderer", "mesh": "residential10", "material": "Res1"},
-                    {
-                        "type": "RigidBody",
-                        "rp3dType": "Static",
-                        "collider":{
-                            "type": "Box Collider",
-                            "halfExtents": [3, 1, 1],
-                            "bounciness":0.0
-                        }
-                    }
-                ]
-            },
-            {//stais
+            {//Stairs
                 "position": [6, -1, 15],
                 "rotation": [0, 0, 0],
                 "scale": [3, 0.1, 0.3],
@@ -314,7 +287,7 @@
                     }
                 ]
             },
-            {//stais
+            {//Stairs
                 "position": [6, -1, 16],
                 "rotation": [0, 0, 0],
                 "scale": [3, 0.1, 0.7],
@@ -330,7 +303,7 @@
                     }
                 ]
             },
-            {//stais
+            {//Stairs
                 "position": [6, -2, 17],
                 "rotation": [0, 0, 0],
                 "scale": [3, 0.6, 0.7],
@@ -346,7 +319,7 @@
                     }
                 ]
             },
-            {//stais
+            {//Stairs
                 "position": [6, -3, 18],
                 "rotation": [0, 0, 0],
                 "scale": [3, 0.6, 0.7],
@@ -362,7 +335,7 @@
                     }
                 ]
             },
-            {//stais
+            {//Stairs
                 "position": [6, -4, 19],
                 "rotation": [0, 0, 0],
                 "scale": [3, 0.6, 0.7],
@@ -382,7 +355,7 @@
                "position": [6, -4, 19],
                "rotation": [-90, 0, 0],
                "scale": [15, 15, 1],
-               "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "wall"},
+               "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "floor"},
                    {
                        "type": "RigidBody",
                        "rp3dType": "Static",
@@ -398,7 +371,7 @@
                 "position": [0, -1, 0],
                 "rotation": [-90, 0, 0],
                 "scale": [15, 15, 1],
-                "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "grass"},
+                "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "floor"},
                     {
                         "type": "RigidBody",
                         "rp3dType": "Static",
@@ -426,22 +399,6 @@
                     }
                 ]
             },
-            // {//wall
-            //     "position": [0, 1, -9.8],
-            //     "rotation": [0, 0, 0],
-            //     "scale": [2, 2, 2],
-            //     "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "grass"},
-            //         {
-            //             "type": "RigidBody",
-            //             "rp3dType": "Static",
-            //             "collider":{
-            //                 "type": "Box Collider",
-            //                 "halfExtents": [5, 2, 1],
-            //                 "bounciness":0.0
-            //             }
-            //         }
-            //     ]
-            // },
             {//wall behind the stairs
                 "position": [3, -3, 15],
                 "rotation": [0, 0, 0],
@@ -500,7 +457,7 @@
                         "rp3dType": "Static",
                         "collider":{
                             "type": "Box Collider",
-                            "halfExtents": [3, 2, 1],
+                            "halfExtents": [4, 2, 1],
                             "bounciness":0.0
                         }
                     }
@@ -560,7 +517,35 @@
                 "scale": [30, 15, 1],
                 "components": [{"type": "Mesh Renderer", "mesh": "plane", "material": "wall"}
                 ]
-            }
+            },
+            { // light spot
+            "position": [
+                4,
+                1,
+                -9
+            ],
+            "rotation": [
+                0,  
+                0,
+                0
+            ],
+            "scale": [
+                1,
+                1,
+                1
+            ],
+            "components": [
+                {
+                    "type": "Light",
+                    "lightType": "point",
+                    "direction":[0, -1 ,0.5 ], 
+                    "color": [0.5, 0.5,0.5],
+                    "innerConeAngle": 30.0,
+                    "outerConeAngle": 60.0,
+                    "attenuation": [1, 0.014, 0.0007]
+                }
+            ]
+            }    
         ]
     }
 }
