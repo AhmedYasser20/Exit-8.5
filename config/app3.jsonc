@@ -495,19 +495,6 @@
                     }
                 ]
             },
-            // ,
-            // {//right door glass 1
-            //     "position": [4.8, 1, 0],
-            //     "rotation": [0, 90, 0],
-            //     "scale": [0.4, 0.6, 0.5],
-            //     "components": [
-            //         {
-            //             "type": "Mesh Renderer",
-            //             "mesh": "plane",
-            //             "material": "door-glass"
-            //         }
-            //     ]
-            // },
             {//right door 2
                 "position": [4.9, 0.5, 6],
                 "rotation": [0, -90, 0],
