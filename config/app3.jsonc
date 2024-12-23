@@ -17,7 +17,7 @@
     "scene": {
         "renderer": {
             "sky": "assets/textures/spooky.jpg",
-            "postprocess": "assets/shaders/postprocess/vignette.frag"
+            "postprocess": "assets/shaders/postprocess/sepia.frag"
         },
         "assets": {
             "shaders": {

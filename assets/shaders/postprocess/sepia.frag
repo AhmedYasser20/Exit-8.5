@@ -7,7 +7,7 @@ out vec4 frag_color;
 // Adjust these values to change the effect intensity
 #define VIGNETTE_STRENGTH 0.3
 #define SEPIA_INTENSITY 0.3
-#define GRAIN_AMOUNT 0.15
+#define GRAIN_AMOUNT 0.09
 
 float random(vec2 coord) {
     return fract(sin(dot(coord, vec2(12.9898, 78.233))) * 43758.5453);
